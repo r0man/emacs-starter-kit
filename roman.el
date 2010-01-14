@@ -1,5 +1,5 @@
 
-;;; Also install my custom packages from elpa ...
+;;; Custom elpa packages.
 (setq starter-kit-packages
       (list
        'clojure-mode
@@ -19,6 +19,7 @@
        'yaml-mode
        ))
 
+;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
 (defun google (query)
@@ -75,17 +76,19 @@ So you can bind it to both M-r and M-s."
 	(comint-delete-input)
 	(insert (ring-ref comint-input-ring pos))))))
 
-;; Use ido for the shell history.
-(require 'shell)
-(define-key shell-mode-map (kbd "M-r") 'ido-complete-comint-input-ring)
-(define-key shell-mode-map (kbd "M-s") 'ido-complete-comint-input-ring)
-
+;; Use my custom color theme.
 (require 'color-theme)
 (load-file "~/.emacs.d/color-theme-roman.el")
 (color-theme-roman)
 
-;;; Start emacs maximized.
+;; Start maximized.
 (toggle-fullscreen)
+
+;; Show the menu bar.
+(if (fboundp 'menu-bar-mode) (menu-bar-mode t))
+
+;; Don't show the scrollbar.
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode nil))
 
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
@@ -132,9 +135,6 @@ So you can bind it to both M-r and M-s."
         try-complete-file-name
         ))
 
-;;; MENU BAR MODE
-(if (fboundp 'menu-bar-mode) (menu-bar-mode t))
-
 ;;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
 (dolist (hook '(emacs-lisp-mode-hook
@@ -155,6 +155,11 @@ So you can bind it to both M-r and M-s."
  )
 
 (ansi-color-for-comint-mode-on) ; Interpret and use ansi color codes in shell buffers
+
+;;; SHELL MODE
+(require 'shell)
+(define-key shell-mode-map (kbd "M-r") 'ido-complete-comint-input-ring)
+(define-key shell-mode-map (kbd "M-s") 'ido-complete-comint-input-ring)
 
 ;;; ZSH SHELL HISTORY
 (if (string-match ".*/zsh$" (getenv "SHELL"))
