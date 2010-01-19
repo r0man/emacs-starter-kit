@@ -84,11 +84,12 @@ So you can bind it to both M-r and M-s."
 ;; Start maximized.
 (toggle-fullscreen)
 
-;; Show the menu bar.
+;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
-
-;; Don't show the scrollbar.
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode nil))
+
+;; Enable cut-and-paste between Emacs and X clipboard.
+(setq x-select-enable-clipboard t)
 
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
