@@ -94,6 +94,10 @@ So you can bind it to both M-r and M-s."
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
 
+;;; Indent lisp more nicly.
+;;; See: http://stackoverflow.com/questions/962222/emacs-clojure-mode-tab-indentation-huge-in-some-cases
+(setq lisp-indent-offset 2)
+
 ;; DESKTOP SAVE MODE
 (setq desktop-path '("." "~" "~/.emacs.d"))
 (setq desktop-save 'if-exists)
