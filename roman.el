@@ -94,7 +94,7 @@ So you can bind it to both M-r and M-s."
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
 
-;;; Indent lisp more nicly.
+;;; Indent lisp code more nicly.
 ;;; See: http://stackoverflow.com/questions/962222/emacs-clojure-mode-tab-indentation-huge-in-some-cases
 (setq lisp-indent-offset 2)
 
@@ -125,9 +125,14 @@ So you can bind it to both M-r and M-s."
 (erc-autojoin-mode 1)
 (setq erc-autojoin-channels-alist '(("freenode.net" "#clojure")))
 
+;;; ESPRESSO MODE
+(setq auto-mode-alist (remove '("\\.js$" . espresso-mode) auto-mode-alist))
+(setq auto-mode-alist (remove '("\\.json$" . espresso-mode) auto-mode-alist))
+
 ;;; FLYSPELL MODE.
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook 'flyspell-mode))
+
 (setq flyspell-abbrev-p t) ; Add corrected words to abbreviation table.
 
 ;;; HIPPIE EXPAND
@@ -139,6 +144,12 @@ So you can bind it to both M-r and M-s."
         try-complete-file-name-partially
         try-complete-file-name
         ))
+
+;;; MOZ-REPL MODE
+(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
+(add-hook 'javascript-mode-hook 'javascript-custom-setup)
+(defun javascript-custom-setup ()
+  (moz-minor-mode 1))
 
 ;;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
@@ -159,23 +170,17 @@ So you can bind it to both M-r and M-s."
  '(comint-completion-addsuffix t)       ; insert space/slash after file completion
  )
 
-(ansi-color-for-comint-mode-on) ; Interpret and use ansi color codes in shell buffers
-
 ;;; SHELL MODE
 (require 'shell)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (define-key shell-mode-map (kbd "M-r") 'ido-complete-comint-input-ring)
 (define-key shell-mode-map (kbd "M-s") 'ido-complete-comint-input-ring)
-
-;;; ZSH SHELL HISTORY
-(if (string-match ".*/zsh$" (getenv "SHELL"))
-    (setenv "HISTFILE" "~/.histfile"))
 
 ;;; KEY BINDINGS
 
 ;; Restore some default key bindings overridden by emacs starter kit.
 (global-set-key (kbd "C-x h") 'mark-whole-buffer)
 (global-set-key (kbd "C-x ^") 'enlarge-window)
-(global-set-key (kbd "C-c s") 'magit-status)
 (global-set-key (kbd "C-x C-o") 'delete-blank-lines)
 
 ;; Unset the eshell ey bindings.
