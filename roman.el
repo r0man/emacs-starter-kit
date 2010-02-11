@@ -82,7 +82,7 @@ So you can bind it to both M-r and M-s."
 (color-theme-roman)
 
 ;; Start maximized.
-(toggle-fullscreen)
+;(toggle-fullscreen)
 
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
@@ -94,9 +94,12 @@ So you can bind it to both M-r and M-s."
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
 
-;;; Indent lisp code more nicly.
-;;; See: http://stackoverflow.com/questions/962222/emacs-clojure-mode-tab-indentation-huge-in-some-cases
-(setq lisp-indent-offset 2)
+;; CLOJURE-MODE
+(defun clojure-mode-setup-indent ()
+  (define-clojure-indent (dstest 1))
+  (define-clojure-indent (uncountable 1)))
+
+(add-hook 'clojure-mode-hook 'clojure-mode-setup-indent)
 
 ;; DESKTOP SAVE MODE
 (setq desktop-path '("." "~" "~/.emacs.d"))
@@ -192,3 +195,5 @@ So you can bind it to both M-r and M-s."
 
 ;; Compile with F5.
 (global-set-key [f5] 'compile)
+
+
