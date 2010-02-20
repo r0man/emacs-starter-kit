@@ -86,7 +86,7 @@ So you can bind it to both M-r and M-s."
 
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode nil))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Enable cut-and-paste between Emacs and X clipboard.
 (setq x-select-enable-clipboard t)

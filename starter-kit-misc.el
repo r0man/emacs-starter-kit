@@ -4,14 +4,12 @@
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-  (turn-off-tool-bar)
   (tooltip-mode -1)
-  (turn-off-tool-bar)
+  (mouse-wheel-mode t)
   (blink-cursor-mode -1))
 
 (add-hook 'before-make-frame-hook 'turn-off-tool-bar)
 
-(mouse-wheel-mode t)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
@@ -22,8 +20,9 @@
       inhibit-startup-message t
       transient-mark-mode t
       color-theme-is-global t
-      delete-by-moving-to-trash t
       shift-select-mode nil
+      mouse-yank-at-point t
+      require-final-newline t
       truncate-partial-width-windows nil
       uniquify-buffer-name-style 'forward
       whitespace-style '(trailing lines space-before-tab
@@ -49,9 +48,6 @@
 
 ;; Enable syntax highlighting for older Emacsen that have it off
 (global-font-lock-mode t)
-
-;; You really don't need this; trust me.
-(menu-bar-mode -1)
 
 ;; Save a list of recent files visited.
 (recentf-mode 1)
@@ -120,9 +116,24 @@
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")))
 
-(eval-after-load 'nxhtml
+(eval-after-load 'mumamo
   '(eval-after-load 'zenburn
-     '(set-face-background 'mumamo-background-chunk-submode "gray22")))
+     '(ignore-errors (set-face-background
+                      'mumamo-background-chunk-submode "gray22"))))
+
+;; Platform-specific stuff
+(when (eq system-type 'darwin)
+  ;; Work around a bug on OS X where system-name is FQDN
+  (setq system-name (car (split-string system-name "\\."))))
+
+;; make emacs use the clipboard
+(setq x-select-enable-clipboard t)
+
+;; Get around the emacswiki spam protection
+(add-hook 'oddmuse-mode-hook
+          (lambda ()
+            (unless (string-match "question" oddmuse-post)
+              (setq oddmuse-post (concat "uihnscuskc=1;" oddmuse-post)))))
 
 (provide 'starter-kit-misc)
 ;;; starter-kit-misc.el ends here
