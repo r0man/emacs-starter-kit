@@ -17,4 +17,8 @@ oddmuse/*
 image-dired/
 elim/
 elpa-to-submit/nxhtml/etc/schema/xhtml-loader.rnc~
-tramp
+tramp/.emacs.desktop
+/.emacs.desktop
+/.emacs.desktop.lock
+/session.*
+/tramp
