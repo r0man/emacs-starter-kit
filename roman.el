@@ -174,6 +174,9 @@ So you can bind it to both M-r and M-s."
  '(comint-completion-addsuffix t)       ; insert space/slash after file completion
  )
 
+;;; RUBY-TEST MODE
+(require 'ruby-test-mode)
+
 ;;; SHELL MODE
 (require 'shell)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
