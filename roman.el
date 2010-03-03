@@ -82,7 +82,7 @@ So you can bind it to both M-r and M-s."
 (color-theme-roman)
 
 ;; Start maximized.
-;(toggle-fullscreen)
+                                        ;(toggle-fullscreen)
 
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
@@ -137,7 +137,12 @@ So you can bind it to both M-r and M-s."
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook 'flyspell-mode))
 
-(setq flyspell-abbrev-p t) ; Add corrected words to abbreviation table.
+(setq flyspell-abbrev-p t) ; Add corrected words to abbreviation
+; table.
+
+;;; GIT
+(add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs") 
+(require 'git-blame)
 
 ;;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
@@ -161,6 +166,7 @@ So you can bind it to both M-r and M-s."
                 haml-mode-hook
                 LaTeX-mode-hook
                 ruby-mode-hook
+                yaml-mode
                 slime-mode-hook))
   (add-hook hook (lambda () (smart-tab-mode t))))
 
@@ -199,5 +205,7 @@ So you can bind it to both M-r and M-s."
 
 ;; Compile with F5.
 (global-set-key [f5] 'compile)
+
+(global-set-key (kbd "C-x I") 'indent-buffer)
 
 
