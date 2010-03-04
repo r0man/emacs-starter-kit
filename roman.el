@@ -181,7 +181,11 @@ So you can bind it to both M-r and M-s."
  )
 
 ;;; RUBY-TEST MODE
-(require 'ruby-test-mode)
+;; (require 'ruby-test-mode)
+
+;;; EMACS RAILS RELOADED
+(setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
+(require 'rails-autoload)
 
 ;;; SHELL MODE
 (require 'shell)
