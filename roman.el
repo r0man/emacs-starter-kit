@@ -187,6 +187,22 @@ So you can bind it to both M-r and M-s."
 (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
 (require 'rails-autoload)
 
+(defun switch-to-rails-runner-buffer ()
+  (switch-to-buffer-other-window rails/runner/buffer-name)
+  (other-window -1))
+
+(defadvice rails/compile/current-method (after rails/compile/current-method-advice) ()
+  "Switch to the rails runner buffer after running the method test."
+  (switch-to-rails-runner-buffer))
+
+(ad-activate 'rails/compile/current-method)
+
+(defadvice rails/compile/single-file (after rails/compile/single-file-advice) ()
+  "Switch to the rails runner buffer after running the file test."
+  (switch-to-rails-runner-buffer))
+
+(ad-activate 'rails/compile/single-file)
+
 ;;; SHELL MODE
 (require 'shell)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
