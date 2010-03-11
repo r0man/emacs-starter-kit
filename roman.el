@@ -244,5 +244,5 @@ So you can bind it to both M-r and M-s."
 (global-set-key [f5] 'compile)
 (global-set-key [f7] 'shell-dwim)
 (global-set-key (kbd "C-x I") 'indent-buffer)
-(global-set-key (kbd "C-c C-d") 'duplicate-current-line-or-region)
+(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
