@@ -22,6 +22,26 @@
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
+(defun duplicate-current-line-or-region (arg)
+  "Duplicates the current line or region ARG times.
+If there's no region, the current line will be duplicated. However, if
+there's a region, all lines that region covers will be duplicated."
+  (interactive "p")
+  (let (beg end (origin (point)))
+    (if (and mark-active (> (point) (mark)))
+        (exchange-point-and-mark))
+    (setq beg (line-beginning-position))
+    (if mark-active
+        (exchange-point-and-mark))
+    (setq end (line-end-position))
+    (let ((region (buffer-substring-no-properties beg end)))
+      (dotimes (i arg)
+        (goto-char end)
+        (newline)
+        (insert region)
+        (setq end (point)))
+      (goto-char (+ origin (* (length region) arg) arg)))))
+
 (defun google (query)
   "Search for QUERY on Google."
   (interactive "sGoogle: ")
@@ -221,11 +241,8 @@ So you can bind it to both M-r and M-s."
 (global-unset-key (kbd "C-x M"))
 
 ;; Cycle through or spawn new shell buffers.
-(global-set-key [f7] 'shell-dwim)
-
-;; Compile with F5.
 (global-set-key [f5] 'compile)
-
+(global-set-key [f7] 'shell-dwim)
 (global-set-key (kbd "C-x I") 'indent-buffer)
-
+(global-set-key (kbd "C-c C-d") 'duplicate-current-line-or-region)
 
