@@ -19,6 +19,18 @@
        'yaml-mode
        ))
 
+;;; Set exec-path.
+(mapc
+ (lambda (directory) (push directory exec-path))
+ '("/bin"
+   "/usr/bin"
+   "/usr/sbin"
+   "/usr/local/bin"
+   "/usr/local/sbin"))
+
+;;; Build PATH from exec-path.
+(setenv "PATH" (mapconcat 'identity exec-path ":"))
+
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
