@@ -31,6 +31,11 @@
 ;;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 
+;;; Set modifier for MacOSX.
+(setq mac-command-modifier 'meta
+      mac-option-modifier 'none
+      default-input-method "MacOSX")
+
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
