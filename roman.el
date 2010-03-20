@@ -20,23 +20,6 @@
        'yaml-mode
        ))
 
-;;; Set exec-path.
-;; (mapc
-;;  (lambda (directory) (push directory exec-path))
-;;  '("/bin"
-;;    "/usr/bin"
-;;    "/usr/sbin"
-;;    "/usr/local/bin"
-;;    "/usr/local/sbin"))
-
-;; ;;; Build PATH from exec-path.
-;; (setenv "PATH" (mapconcat 'identity exec-path ":"))
-
-;; ;;; Set modifier for MacOSX.
-;; (setq mac-command-modifier 'meta
-;;       mac-option-modifier 'none
-      ;; default-input-method "MacOSX")
-
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
@@ -65,11 +48,11 @@ there's a region, all lines that region covers will be duplicated."
   (interactive "sGoogle: ")
   (browse-url (concat "http://www.google.com/search?q=" query)))
 
-(defun toggle-fullscreen ()
-  "Toggle fullscreen mode."
+(defun fullscreen (&optional f)
   (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+  (set-frame-parameter
+   f 'fullscreen
+   (if (frame-parameter f 'fullscreen) nil 'fullboth)))
 
 ;; Invoking multiple shells, and defining new shells.
 ;; See: http://www.emacswiki.org/emacs/ShellMode#toc3
@@ -118,9 +101,6 @@ So you can bind it to both M-r and M-s."
 (require 'color-theme)
 (load-file "~/.emacs.d/color-theme-roman.el")
 (color-theme-roman)
-
-;; Start maximized.
-                                        ;(toggle-fullscreen)
 
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
@@ -261,6 +241,7 @@ So you can bind it to both M-r and M-s."
 ;; Cycle through or spawn new shell buffers.
 (global-set-key [f5] 'compile)
 (global-set-key [f7] 'shell-dwim)
+(global-set-key [f11] 'fullscreen)
 (global-set-key (kbd "C-x I") 'indent-buffer)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
