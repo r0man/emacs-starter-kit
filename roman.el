@@ -14,27 +14,28 @@
        'json
        'magit
        'ruby-mode
+       'ruby-test-mode
        'sass-mode
        'smart-tab
        'yaml-mode
        ))
 
 ;;; Set exec-path.
-(mapc
- (lambda (directory) (push directory exec-path))
- '("/bin"
-   "/usr/bin"
-   "/usr/sbin"
-   "/usr/local/bin"
-   "/usr/local/sbin"))
+;; (mapc
+;;  (lambda (directory) (push directory exec-path))
+;;  '("/bin"
+;;    "/usr/bin"
+;;    "/usr/sbin"
+;;    "/usr/local/bin"
+;;    "/usr/local/sbin"))
 
-;;; Build PATH from exec-path.
-(setenv "PATH" (mapconcat 'identity exec-path ":"))
+;; ;;; Build PATH from exec-path.
+;; (setenv "PATH" (mapconcat 'identity exec-path ":"))
 
-;;; Set modifier for MacOSX.
-(setq mac-command-modifier 'meta
-      mac-option-modifier 'none
-      default-input-method "MacOSX")
+;; ;;; Set modifier for MacOSX.
+;; (setq mac-command-modifier 'meta
+;;       mac-option-modifier 'none
+      ;; default-input-method "MacOSX")
 
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
