@@ -23,6 +23,26 @@
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
+(setq
+ exec-path
+ '(
+   "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
+   "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
+   "/usr/local/rvm/gems/ruby-1.9.1-p378%global/bin"
+   "/usr/local/rvm/bin"
+   "/usr/local/sbin"
+   "/usr/local/bin"
+   "/usr/sbin"
+   "/usr/bin"
+   "/sbin"
+   "/bin"
+   "/usr/games"))
+
+(require 'rvm)
+
+;;; Build PATH from exec-path.
+(setenv "PATH" (mapconcat 'identity exec-path ":"))
+
 (defun duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
 If there's no region, the current line will be duplicated. However, if
@@ -76,6 +96,24 @@ there's a region, all lines that region covers will be duplicated."
          (buffer (if create (generate-new-buffer-name "*shell*")
                    next-shell-buffer)))
     (shell buffer)))
+
+(defun swap-windows ()
+  "If you have 2 windows, it swaps them."
+  (interactive)
+  (cond ((/= (count-windows) 2)
+         (message "You need exactly 2 windows to do this."))
+        (t
+         (let* ((w1 (first (window-list)))
+                (w2 (second (window-list)))
+                (b1 (window-buffer w1))
+                (b2 (window-buffer w2))
+                (s1 (window-start w1))
+                (s2 (window-start w2)))
+           (set-window-buffer w1 b2)
+           (set-window-buffer w2 b1)
+           (set-window-start w1 s2)
+           (set-window-start w2 s1))))
+  (other-window 1))
 
 ;; Use IDO fro comint history
 ;; See: http://paste.lisp.org/display/37129 (modified to remove duplicate)
@@ -244,4 +282,4 @@ So you can bind it to both M-r and M-s."
 (global-set-key [f11] 'fullscreen)
 (global-set-key (kbd "C-x I") 'indent-buffer)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
-
+(global-set-key (kbd "C-c s") 'swap-windows)
