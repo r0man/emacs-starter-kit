@@ -26,6 +26,7 @@
 (setq
  exec-path
  '(
+   "~/bin"
    "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
    "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
    "/usr/local/rvm/gems/ruby-1.9.1-p378%global/bin"
@@ -194,7 +195,7 @@ So you can bind it to both M-r and M-s."
   (add-hook hook 'flyspell-mode))
 
 (setq flyspell-abbrev-p t) ; Add corrected words to abbreviation
-; table.
+                                        ; table.
 
 ;;; GIT
 (add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs") 
@@ -209,6 +210,23 @@ So you can bind it to both M-r and M-s."
         try-complete-file-name-partially
         try-complete-file-name
         ))
+
+;;; IBUFFER-GIT
+(add-to-list 'load-path "~/.emacs.d/ibuffer-git")
+(require 'ibuffer-git)
+(setq ibuffer-formats
+      '((mark modified read-only git-status-mini
+              " "
+              (name 18 18 :left :elide)
+              " "
+              (size 9 -1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " "
+              (git-status 8 8 :left)
+              " "
+              filename-and-process)
+        (mark " " (name 16 -1) " " filename)))
 
 ;;; MOZ-REPL MODE
 (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
