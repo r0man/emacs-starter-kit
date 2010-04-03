@@ -34,5 +34,4 @@
          (signature-file "~/.emacs.d/soundcloud.signature"))))
 
 (gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
-(gnus-demon-init)
 
