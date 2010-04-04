@@ -238,6 +238,7 @@ So you can bind it to both M-r and M-s."
 (setq smart-tab-using-hippie-expand t)
 (dolist (hook '(emacs-lisp-mode-hook
                 haml-mode-hook
+                html-mode-hook
                 LaTeX-mode-hook
                 ruby-mode-hook
                 yaml-mode
