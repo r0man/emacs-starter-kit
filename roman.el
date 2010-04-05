@@ -10,7 +10,6 @@
        'haml-mode
        'idle-highlight
        'inf-ruby
-       'js2-mode
        'json
        'magit
        'ruby-mode
@@ -186,16 +185,11 @@ So you can bind it to both M-r and M-s."
 (erc-autojoin-mode 1)
 (setq erc-autojoin-channels-alist '(("freenode.net" "#clojure")))
 
-;;; ESPRESSO MODE
-(setq auto-mode-alist (remove '("\\.js$" . espresso-mode) auto-mode-alist))
-(setq auto-mode-alist (remove '("\\.json$" . espresso-mode) auto-mode-alist))
-
 ;;; FLYSPELL MODE.
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook 'flyspell-mode))
 
-(setq flyspell-abbrev-p t) ; Add corrected words to abbreviation
-                                        ; table.
+(setq flyspell-abbrev-p t) ; Add corrected words to abbreviation ; table.
 
 ;;; GIT
 (add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs") 
