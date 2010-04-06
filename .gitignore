@@ -28,3 +28,4 @@ session*
 tramp
 \#*
 >>>>>>> master:.gitignore
+/bbdb

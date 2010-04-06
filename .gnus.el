@@ -44,3 +44,19 @@
 
 (gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
 
+(add-hook 'gnus-select-group-hook 'gnus-group-set-timestamp)
+
+;; Format of group lines.
+(setq gnus-group-line-format "%M%S%5y:%B%(%-40,40G%) %ud\n")
+
+;; Display custom date in group lines.
+(defun gnus-user-format-function-d (headers)  
+  (let ((time (gnus-group-timestamp gnus-tmp-group)))
+    (if time
+        (format-time-string "%b %d %Y, %H:%M:%S" time)
+      "")))
+
+;; Hook BBDB into Gnus and Sendmail.
+(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+(add-hook 'mail-setup-hook 'bbdb-insinuate-sendmail)
+
