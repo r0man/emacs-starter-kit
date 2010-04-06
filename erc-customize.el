@@ -46,7 +46,7 @@
         ("echo" t (lambda (args) args))
         ("help" t (lambda (args)
                     (concat
-                     "Commands available: "
+                     "Commands: "
                      (mapconcat
                       (lambda (e)
                         (car e))
