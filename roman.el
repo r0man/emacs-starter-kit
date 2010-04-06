@@ -179,30 +179,11 @@ So you can bind it to both M-r and M-s."
 
 ;;; ERC MODE
 (setq erc-nick "r0man")
-(setq erc-user-full-name "Roman Scherer")
-
-(require 'erc-join)
-(require 'erc-highlight-nicknames)
-(erc-autojoin-mode 1)
-(erc-spelling-mode 1)
-(erc-highlight-nicknames-enable)
-;; (setq erc-autojoin-channels-alist '(("freenode.net" "#clojure")))
 (setq erc-autojoin-channels-alist '(("freenode.net" "#soundcloud")))
+(require 'erc-customize)
 
-(defun erc-cmd-SLAP (&rest nick)
-  "Slaps someone around the solar system -- just out of spite."
-  (erc-send-action (erc-default-target) (concat "slaps " (car nick) " around the solar system -- just out of spite!")))
-
-(defun erc-cmd-SPOOK (&rest ignore)
-  "Send a spooky list of keywords."
-  (let* ((spook (with-temp-buffer (spook) (buffer-string)))
-	 (output (replace-regexp-in-string "\n" " " spook)))
-    (erc-send-message output)))
-
-(defun erc-cmd-YOW ()
-  "Display some pinhead wisdom into the current ERC buffer."
-  (let ((yow (replace-regexp-in-string "\n" "" (yow))))
-    (erc-send-message yow)))
+;;; FORTUNE 
+(setq fortune-file "~/.emacs.d/fortune-chucknorris")
 
 ;;; FLYSPELL MODE.
 (dolist (hook '(LaTeX-mode-hook))
