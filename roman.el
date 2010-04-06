@@ -10,7 +10,6 @@
        'haml-mode
        'idle-highlight
        'inf-ruby
-       'js2-mode
        'json
        'magit
        'ruby-mode
@@ -205,19 +204,33 @@ So you can bind it to both M-r and M-s."
 (setq erc-user-full-name "Roman Scherer")
 
 (require 'erc-join)
+(require 'erc-highlight-nicknames)
 (erc-autojoin-mode 1)
-(setq erc-autojoin-channels-alist '(("freenode.net" "#clojure")))
+(erc-spelling-mode 1)
+(erc-highlight-nicknames-enable)
+;; (setq erc-autojoin-channels-alist '(("freenode.net" "#clojure")))
+(setq erc-autojoin-channels-alist '(("freenode.net" "#soundcloud")))
 
-;;; ESPRESSO MODE
-(setq auto-mode-alist (remove '("\\.js$" . espresso-mode) auto-mode-alist))
-(setq auto-mode-alist (remove '("\\.json$" . espresso-mode) auto-mode-alist))
+(defun erc-cmd-SLAP (&rest nick)
+  "Slaps someone around the solar system -- just out of spite."
+  (erc-send-action (erc-default-target) (concat "slaps " (car nick) " around the solar system -- just out of spite!")))
+
+(defun erc-cmd-SPOOK (&rest ignore)
+  "Send a spooky list of keywords."
+  (let* ((spook (with-temp-buffer (spook) (buffer-string)))
+	 (output (replace-regexp-in-string "\n" " " spook)))
+    (erc-send-message output)))
+
+(defun erc-cmd-YOW ()
+  "Display some pinhead wisdom into the current ERC buffer."
+  (let ((yow (replace-regexp-in-string "\n" "" (yow))))
+    (erc-send-message yow)))
 
 ;;; FLYSPELL MODE.
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook 'flyspell-mode))
 
-(setq flyspell-abbrev-p t) ; Add corrected words to abbreviation
-                                        ; table.
+(setq flyspell-abbrev-p t) ; Add corrected words to abbreviation ; table.
 
 ;;; GIT
 (add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs") 
@@ -260,6 +273,7 @@ So you can bind it to both M-r and M-s."
 (setq smart-tab-using-hippie-expand t)
 (dolist (hook '(emacs-lisp-mode-hook
                 haml-mode-hook
+                html-mode-hook
                 LaTeX-mode-hook
                 ruby-mode-hook
                 yaml-mode
@@ -323,3 +337,4 @@ So you can bind it to both M-r and M-s."
 (global-set-key (kbd "C-x I") 'indent-buffer)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 (global-set-key (kbd "C-c s") 'swap-windows)
+
