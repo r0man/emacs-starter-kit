@@ -206,7 +206,7 @@ So you can bind it to both M-r and M-s."
 
 ;;; ERC MODE
 (setq erc-nick "r0man")
-(setq erc-autojoin-channels-alist '(("freenode.net" "#soundcloud")))
+(setq erc-autojoin-channels-alist '(("freenode.net" "#soundcloudteam")))
 (require 'erc-customize)
 
 ;;; FORTUNE 
