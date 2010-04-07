@@ -2,7 +2,9 @@
 (require 'erc-highlight-nicknames)
 (require 'erc-join)
 (require 'erc-robot)
+(require 'fortune-ext)
 
+;; Join channels in automatical.
 (erc-autojoin-mode 1)
 
 ;; Enable ERC highlight-nicknames mode.
@@ -31,18 +33,7 @@
 
 (setq erc-robot-commands
       '(
-        ("chucknorris" t (lambda (args)
-                       (require 'fortune)
-                       (fortune-in-buffer nil)
-                       (let ((f (get-buffer fortune-buffer-name)))
-                         (if f
-                             (progn
-                               (set-buffer f)
-                               (erc-replace-regexp-in-string
-                                "\n" " " (buffer-substring (point-min)
-                                                           (point-max))))
-                           "no fortunes!"))))
-        ("doctor" t erc-doctor)
+        ("chucknorris" t (lambda (args) (fortune-chuck-norris-epigram)))
         ("echo" t (lambda (args) args))
         ("help" t (lambda (args)
                     (concat
@@ -51,13 +42,6 @@
                       (lambda (e)
                         (car e))
                       erc-robot-commands " "))))
-        ("music" t (lambda (args)
-                     (concat "now playing: "
-                             (let ((track (dme:now-playing)))
-                               (if track
-                                   track
-                                 "nothing.")))))
-
         ("version" t (lambda (args) (erc-version)))
         ("zippy" t (lambda (args)
                      (erc-replace-regexp-in-string "\n" " " (yow))))))
