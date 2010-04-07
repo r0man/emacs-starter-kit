@@ -27,6 +27,9 @@
 ;;; Minor mode for topicsifying Gnus group buffers.
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
+;;; Asynchronous mail fetching.
+(setq gnus-asynchronous t)
+
 ;;; Alist of styles to use when posting.
 (setq gnus-posting-styles
       '(("Burningswell"
