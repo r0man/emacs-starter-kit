@@ -200,6 +200,9 @@ So you can bind it to both M-r and M-s."
 (setq erc-autojoin-channels-alist '(("freenode.net" "#soundcloudteam")))
 (require 'erc-customize)
 
+;;; ESHELL
+(setq eshell-aliases-file "~/.emacs.d/eshell.aliases")
+
 ;;; FORTUNE 
 (setq fortune-file "~/.emacs.d/fortune-chucknorris")
 
