@@ -205,8 +205,11 @@ So you can bind it to both M-r and M-s."
 ;;; ESHELL
 (setq eshell-aliases-file "~/.emacs.d/eshell.aliases")
 
-(defun eshell/emacs (file)
-  (find-file file))
+(defun eshell/emacs (&rest args)
+  "Open a file in emacs. Some habits die hard."
+  (if (null args)
+      (bury-buffer)
+    (mapc #'find-file (mapcar #'expand-file-name (eshell-flatten-list (reverse args))))))
 
 (setq eshell-prompt-function
   (lambda ()
