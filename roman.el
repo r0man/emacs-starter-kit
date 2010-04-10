@@ -23,21 +23,23 @@
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
+
+
 (setq
  exec-path
- '(
-   "~/bin"
-   "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
-   "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
-   "/usr/local/rvm/gems/ruby-1.9.1-p378%global/bin"
-   "/usr/local/rvm/bin"
-   "/usr/local/sbin"
-   "/usr/local/bin"
-   "/usr/sbin"
-   "/usr/bin"
-   "/sbin"
-   "/bin"
-   "/usr/games"))
+ (list  
+  (expand-file-name "~/bin")
+  "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
+  "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
+  "/usr/local/rvm/gems/ruby-1.9.1-p378%global/bin"
+  "/usr/local/rvm/bin"
+  "/usr/local/sbin"
+  "/usr/local/bin"
+  "/usr/sbin"
+  "/usr/bin"
+  "/sbin"
+  "/bin"
+  "/usr/games"))
 
 (require 'rvm)
 
@@ -197,11 +199,20 @@ So you can bind it to both M-r and M-s."
 
 ;;; ERC MODE
 (setq erc-nick "r0man")
-(setq erc-autojoin-channels-alist '(("freenode.net" "#soundcloudteam")))
+(setq erc-autojoin-channels-alist '(("freenode.net" "#clojure" "#soundcloudteam")))
 (require 'erc-customize)
 
 ;;; ESHELL
 (setq eshell-aliases-file "~/.emacs.d/eshell.aliases")
+
+(defun eshell/emacs (file)
+  (find-file file))
+
+(setq eshell-prompt-function
+  (lambda ()
+    (concat     
+     (eshell/pwd)
+     (if (= (user-uid) 0) " # " " $ "))))
 
 ;;; FORTUNE 
 (setq fortune-file "~/.emacs.d/fortune-chucknorris")
@@ -323,5 +334,5 @@ So you can bind it to both M-r and M-s."
 (global-set-key [f11] 'fullscreen)
 (global-set-key (kbd "C-x I") 'indent-buffer)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
-(global-set-key (kbd "C-c s") 'swap-windows)
+(global-set-key (kbd "C-c C-s") 'swap-windows)
 

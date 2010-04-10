@@ -1,7 +1,6 @@
 loaddefs.el*
 backups/*
 auto-save-list
-custom.el
 *elc
 places
 url/cookies
@@ -17,15 +16,6 @@ oddmuse/*
 image-dired/
 elim/
 elpa-to-submit/nxhtml/etc/schema/xhtml-loader.rnc~
-<<<<<<< HEAD:.gitignore
-tramp/.emacs.desktop
-/.emacs.desktop
-/.emacs.desktop.lock
-/session.*
-/tramp
-=======
-session*
-tramp
-\#*
->>>>>>> master:.gitignore
 /bbdb
+/tramp
+/session.10821b14829f4c012703743184783100000020520031
