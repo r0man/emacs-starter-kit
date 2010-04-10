@@ -44,6 +44,11 @@
 ;;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 
+(defun chomp (str)
+  "Chomp leading and tailing whitespace from STR."
+  (let ((s (if (symbolp str) (symbol-name str) str)))
+    (replace-regexp-in-string "\\(^[[:space:]\\n]*\\|[[:space:]\\n]*$\\)" "" s)))
+
 (defun duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
 If there's no region, the current line will be duplicated. However, if
