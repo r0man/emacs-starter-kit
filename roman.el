@@ -75,29 +75,6 @@ there's a region, all lines that region covers will be duplicated."
    f 'fullscreen
    (if (frame-parameter f 'fullscreen) nil 'fullboth)))
 
-;; Invoking multiple shells, and defining new shells.
-;; See: http://www.emacswiki.org/emacs/ShellMode#toc3
-(defun shell-dwim (&optional create)
-  "Start or switch to an inferior shell process, in a smart way.
- If a buffer with a running shell process exists, simply switch to
- that buffer.
- If a shell buffer exists, but the shell process is not running,
- restart the shell.
- If already in an active shell buffer, switch to the next one, if
- any.
- With prefix argument CREATE always start a new shell."
-  (interactive "P")
-  (let* ((next-shell-buffer
-          (catch 'found
-            (dolist (buffer (reverse (buffer-list)))
-              (when (and
-                     (string-match "^\\*shell\\*" (buffer-name buffer))
-                     (not (string= (buffer-name) (buffer-name buffer))))
-                (throw 'found buffer)))))
-         (buffer (if create (generate-new-buffer-name "*shell*")
-                   next-shell-buffer)))
-    (shell buffer)))
-
 (defun swap-windows ()
   "If you have 2 windows, it swaps them."
   (interactive)
@@ -321,10 +298,10 @@ So you can bind it to both M-r and M-s."
 (ad-activate 'rails/compile/single-file)
 
 ;;; SHELL MODE
-(require 'shell)
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-(define-key shell-mode-map (kbd "M-r") 'ido-complete-comint-input-ring)
-(define-key shell-mode-map (kbd "M-s") 'ido-complete-comint-input-ring)
+;; (require 'shell)
+;; (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+;; (define-key shell-mode-map (kbd "M-r") 'ido-complete-comint-input-ring)
+;; (define-key shell-mode-map (kbd "M-s") 'ido-complete-comint-input-ring)
 
 ;;; KEY BINDINGS
 
@@ -333,13 +310,8 @@ So you can bind it to both M-r and M-s."
 (global-set-key (kbd "C-x ^") 'enlarge-window)
 (global-set-key (kbd "C-x C-o") 'delete-blank-lines)
 
-;; Unset the eshell ey bindings.
-(global-unset-key (kbd "C-x m"))
-(global-unset-key (kbd "C-x M"))
-
 ;; Cycle through or spawn new shell buffers.
 (global-set-key [f5] 'compile)
-(global-set-key [f7] 'shell-dwim)
 (global-set-key [f11] 'fullscreen)
 (global-set-key (kbd "C-x I") 'indent-buffer)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
