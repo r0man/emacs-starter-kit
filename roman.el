@@ -5,6 +5,7 @@
        'clojure-mode
        'clojure-test-mode
        'css-mode
+       'emms
        'erc
        'gist
        'haml-mode
@@ -199,6 +200,19 @@ So you can bind it to both M-r and M-s."
                 register-alist)))
 (desktop-save-mode 1)
 
+;;; EMMS
+(load-file "~/.lastfm.el")
+(require 'emms-setup)
+(require 'emms-playing-time)
+(require 'emms-lastfm)
+(emms-all)
+(emms-default-players)
+(emms-mode-line 1)
+(emms-playing-time 1)
+(setq emms-info-asynchronously nil
+      emms-playlist-buffer-name "*Music*"
+      emms-source-file-default-directory "~/Music")
+
 ;;; ERC MODE
 (setq erc-nick "r0man")
 (setq erc-autojoin-channels-alist '(("freenode.net" "#soundcloudteam")))
@@ -261,6 +275,18 @@ So you can bind it to both M-r and M-s."
                 slime-mode-hook))
   (add-hook hook (lambda () (smart-tab-mode t))))
 
+;;; TRAMP
+(require 'tramp)
+(setq tramp-debug-buffer nil
+      tramp-default-method "ssh")
+(add-to-list 'tramp-default-method-alist '("bombaclaat" "" "ssh"))
+(add-to-list 'tramp-default-method-alist '("soundclaat" "" "ssh"))
+ 	
+(tramp-set-completion-function
+ "ssh"
+ '((tramp-parse-shosts "~/.ssh/known_hosts")
+   (tramp-parse-hosts "/etc/hosts")))
+
 ;;; COMINT MODE
 (custom-set-variables
  '(comint-scroll-to-bottom-on-input t)  ; always insert at the bottom
@@ -272,7 +298,7 @@ So you can bind it to both M-r and M-s."
  )
 
 ;;; RUBY-TEST MODE
-;; (require 'ruby-test-mode)
+(require 'ruby-test-mode)
 
 ;;; EMACS RAILS RELOADED
 (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
