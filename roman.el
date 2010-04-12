@@ -211,11 +211,26 @@ So you can bind it to both M-r and M-s."
       (bury-buffer)
     (mapc #'find-file (mapcar #'expand-file-name (eshell-flatten-list (reverse args))))))
 
+(defun eshell/bg (&rest args)
+  "Use `compile' to do background makes."
+  (if (eshell-interactive-output-p)
+      (let ((compilation-process-setup-function
+             (list 'lambda nil
+                   (list 'setq 'process-environment
+                         (list 'quote (eshell-copy-environment))))))
+        (compile (eshell-flatten-and-stringify args))
+        (pop-to-buffer compilation-last-buffer))
+    (throw 'eshell-replace-command
+           (let ((l (eshell-stringify-list (eshell-flatten-list args))))
+             (eshell-parse-command (car l) (cdr l))))))
+
+(put 'eshell/bg 'eshell-no-numeric-conversions t)
+
 (setq eshell-prompt-function
-  (lambda ()
-    (concat     
-     (eshell/pwd)
-     (if (= (user-uid) 0) " # " " $ "))))
+      (lambda ()
+        (concat (or (getenv "USER") user-login-name) "@"
+                (or (getenv "HOSTNAME") (getenv "HOST") system-name) ":"
+                (eshell/pwd) (if (= (user-uid) 0) " # " " $ "))))
 
 ;;; FORTUNE 
 (setq fortune-file "~/.emacs.d/fortune-chucknorris")
@@ -280,7 +295,7 @@ So you can bind it to both M-r and M-s."
       tramp-default-method "ssh")
 (add-to-list 'tramp-default-method-alist '("bombaclaat" "" "ssh"))
 (add-to-list 'tramp-default-method-alist '("soundclaat" "" "ssh"))
- 	
+
 (tramp-set-completion-function
  "ssh"
  '((tramp-parse-shosts "~/.ssh/known_hosts")
