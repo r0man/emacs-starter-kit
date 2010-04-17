@@ -23,8 +23,6 @@
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
-
-
 (setq
  exec-path
  (list  
@@ -203,7 +201,9 @@ So you can bind it to both M-r and M-s."
 (require 'erc-customize)
 
 ;;; ESHELL
-(set-face-attribute 'eshell-prompt nil :foreground "Black")
+(eval-after-load 'esh-opt
+  '(set-face-attribute 'eshell-prompt nil :foreground "Black"))
+
 (setq eshell-aliases-file "~/.emacs.d/eshell.aliases"
       eshell-save-history-on-exit t)
 
