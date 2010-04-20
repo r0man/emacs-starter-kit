@@ -25,7 +25,7 @@
 
 (setq
  exec-path
- (list  
+ (list
   (expand-file-name "~/bin")
   "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
   "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
@@ -123,6 +123,9 @@ So you can bind it to both M-r and M-s."
 (load-file "~/.emacs.d/color-theme-roman.el")
 (color-theme-roman)
 
+;; Highlight trailing whitespace
+(setq show-trailing-whitespace t)
+
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -131,24 +134,24 @@ So you can bind it to both M-r and M-s."
 (setq x-select-enable-clipboard t)
 
 ;; Insidious Big Brother Database
-(setq bbdb-file "~/.emacs.d/bbdb") 
+(setq bbdb-file "~/.emacs.d/bbdb")
 (require 'bbdb)
 (bbdb-initialize 'gnus)
-(setq bbbd-message-caching-enabled t  
-      bbdb-always-add-address t           
+(setq bbbd-message-caching-enabled t
+      bbdb-always-add-address t
       bbdb-canonicalize-redundant-nets-p t
       bbdb-complete-name-allow-cycling t
-      bbdb-completion-type nil          
+      bbdb-completion-type nil
       bbdb-default-area-code 49
       bbdb-north-american-phone-numbers-p nil
       bbdb-dwim-net-address-allow-redundancy t
       bbdb-electric-p t
-      bbdb-elided-display t           
+      bbdb-elided-display t
       bbdb-ignore-some-messages-alist '(( "From" . "no.?reply\\|DAEMON\\|daemon\\|facebookmail\\|twitter"))
       bbdb-offer-save 1
-      bbdb-popup-target-lines 1              
-      bbdb-quiet-about-name-mismatches 2  
-      bbdb-use-alternate-names t      
+      bbdb-popup-target-lines 1
+      bbdb-quiet-about-name-mismatches 2
+      bbdb-use-alternate-names t
       bbdb-use-pop-up t
       bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
 
@@ -234,7 +237,7 @@ So you can bind it to both M-r and M-s."
                 (or (getenv "HOSTNAME") (getenv "HOST") system-name) ":"
                 (eshell/pwd) (if (= (user-uid) 0) " # " " $ "))))
 
-;;; FORTUNE 
+;;; FORTUNE
 (setq fortune-file "~/.emacs.d/fortune-chucknorris")
 
 ;;; FLYSPELL MODE.
@@ -244,7 +247,7 @@ So you can bind it to both M-r and M-s."
 (setq flyspell-abbrev-p t) ; Add corrected words to abbreviation ; table.
 
 ;;; GIT
-(add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs") 
+(add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs")
 (require 'git-blame)
 
 ;;; HIPPIE EXPAND
