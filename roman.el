@@ -12,7 +12,6 @@
        'idle-highlight
        'inf-ruby
        'json
-       'magit
        'ruby-mode
        'ruby-test-mode
        'sass-mode
@@ -249,6 +248,7 @@ So you can bind it to both M-r and M-s."
 ;;; GIT
 (add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs")
 (require 'git-blame)
+(require 'magit)
 
 ;;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
