@@ -117,6 +117,15 @@ So you can bind it to both M-r and M-s."
 	(comint-delete-input)
 	(insert (ring-ref comint-input-ring pos))))))
 
+;; Abort the minibuffer when using the mouse.
+;; http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+(defun stop-using-minibuffer ()
+  "Kills the minibuffer when used recursivly."
+  (when (>= (recursion-depth) 1)
+    (abort-recursive-edit)))
+
+(add-hook 'mouse-leave-buffer-hook 'stop-using-minibuffer)
+
 ;; Use my custom color theme.
 (require 'color-theme)
 (load-file "~/.emacs.d/color-theme-roman.el")
@@ -185,7 +194,8 @@ So you can bind it to both M-r and M-s."
 (desktop-save-mode 1)
 
 ;;; EMMS
-(load-file "~/.lastfm.el")
+(if (file-exists-p "~/.lastfm.el")
+    (load-file "~/.lastfm.el"))
 (require 'emms-setup)
 (require 'emms-playing-time)
 (require 'emms-lastfm)
