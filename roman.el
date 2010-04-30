@@ -210,6 +210,8 @@ So you can bind it to both M-r and M-s."
 ;;; ERC MODE
 (setq erc-nick "r0man")
 (setq erc-autojoin-channels-alist '(("freenode.net" "#clojure" "#soundcloudteam")))
+(if (file-exists-p "~/.erc.el")
+    (load-file "~/.erc.el"))
 (require 'erc-customize)
 
 ;;; ESHELL

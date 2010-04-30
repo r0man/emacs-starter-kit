@@ -3,6 +3,7 @@
 (require 'erc-join)
 (require 'erc-robot)
 (require 'fortune-ext)
+(require 'erc-services)
 
 ;; Join channels in automatical.
 (erc-autojoin-mode 1)
@@ -15,6 +16,12 @@
 
 ;; Use the user-full-name variable on IRC.
 (setq erc-user-full-name user-full-name)
+
+;; This mode automates communication with services.
+(erc-services-mode 1)
+
+;; Don't ask for the password when identifying to NickServ.
+(setq erc-prompt-for-nickserv-password nil)
 
 (defun erc-cmd-SLAP (&rest nick)
   "Slaps someone around the solar system -- just out of spite."
