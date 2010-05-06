@@ -249,7 +249,8 @@ So you can bind it to both M-r and M-s."
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook 'flyspell-mode))
 
-(setq flyspell-abbrev-p t) ; Add corrected words to abbreviation ; table.
+; Add corrected words to abbreviation table.
+(setq flyspell-abbrev-p t) 
 
 ;;; GIT
 (add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs")
