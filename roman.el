@@ -328,6 +328,7 @@ So you can bind it to both M-r and M-s."
 
 ;;; EMACS RAILS RELOADED
 (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
+(setq rails/bundles/disabled-list '(apidoc generator webserver))
 (require 'rails-autoload)
 
 (defun switch-to-rails-runner-buffer ()
