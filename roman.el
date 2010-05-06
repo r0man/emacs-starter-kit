@@ -26,7 +26,8 @@
 
 (setq
  exec-path
- (list
+ (list  
+  (expand-file-name "~/local/appengine-java-sdk-1.3.3.1/bin")
   (expand-file-name "~/bin")
   "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
   "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
