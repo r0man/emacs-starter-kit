@@ -12,11 +12,13 @@
        'idle-highlight
        'inf-ruby
        'json
+       'paredit
        'ruby-mode
        'ruby-test-mode
        'sass-mode
        'smart-tab
        'yaml-mode
+       'yasnippet-bundle
        ))
 
 ;;; Install the custom elpa packages, if not already installed.
