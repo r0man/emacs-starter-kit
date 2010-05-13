@@ -12,7 +12,7 @@
        'idle-highlight
        'inf-ruby
        'json
-       'paredit
+;       'paredit
        'ruby-mode
        'ruby-test-mode
        'sass-mode
@@ -128,10 +128,6 @@ So you can bind it to both M-r and M-s."
 ;; Highlight trailing whitespace
 (setq show-trailing-whitespace t)
 
-;; Show the menu-bar, but not the scroll-bar.
-(if (fboundp 'menu-bar-mode) (menu-bar-mode t))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
 ;; Enable cut-and-paste between Emacs and X clipboard.
 (setq x-select-enable-clipboard t)
 
@@ -164,6 +160,7 @@ So you can bind it to both M-r and M-s."
 (defun clojure-mode-setup-indent ()
   (define-clojure-indent (are 1))
   (define-clojure-indent (dstest 1))
+  (define-clojure-indent (task-queue-test 1))
   (define-clojure-indent (uncountable 1)))
 
 (add-hook 'clojure-mode-hook 'clojure-mode-setup-indent)
@@ -298,6 +295,7 @@ So you can bind it to both M-r and M-s."
                 LaTeX-mode-hook
                 ruby-mode-hook
                 yaml-mode
+                css-mode
                 slime-mode-hook))
   (add-hook hook (lambda () (smart-tab-mode t))))
 
