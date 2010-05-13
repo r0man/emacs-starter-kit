@@ -134,28 +134,6 @@ So you can bind it to both M-r and M-s."
 ;; Enable cut-and-paste between Emacs and X clipboard.
 (setq x-select-enable-clipboard t)
 
-;; Insidious Big Brother Database
-(setq bbdb-file "~/.emacs.d/bbdb")
-(require 'bbdb)
-(bbdb-initialize 'gnus)
-(setq bbbd-message-caching-enabled t
-      bbdb-always-add-address t
-      bbdb-canonicalize-redundant-nets-p t
-      bbdb-complete-name-allow-cycling t
-      bbdb-completion-type nil
-      bbdb-default-area-code 49
-      bbdb-north-american-phone-numbers-p nil
-      bbdb-dwim-net-address-allow-redundancy t
-      bbdb-electric-p t
-      bbdb-elided-display t
-      bbdb-ignore-some-messages-alist '(( "From" . "no.?reply\\|DAEMON\\|daemon\\|facebookmail\\|twitter"))
-      bbdb-offer-save 1
-      bbdb-popup-target-lines 1
-      bbdb-quiet-about-name-mismatches 2
-      bbdb-use-alternate-names t
-      bbdb-use-pop-up t
-      bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
-
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
 
