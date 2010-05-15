@@ -140,7 +140,8 @@ So you can bind it to both M-r and M-s."
 ;; CLOJURE-MODE
 (defun clojure-mode-setup-indent ()
   (define-clojure-indent (are 1))
-  (define-clojure-indent (dstest 1))
+  (define-clojure-indent (datastore-test 1))
+  (define-clojure-indent (memcache-test 1))
   (define-clojure-indent (task-queue-test 1))
   (define-clojure-indent (uncountable 1)))
 
