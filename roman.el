@@ -29,6 +29,8 @@
  (list  
   (expand-file-name "~/local/appengine-java-sdk-1.3.3.1/bin")
   (expand-file-name "~/bin")
+  (expand-file-name "~/local/hadoop/bin")
+  (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")  
   "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
   "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
   "/usr/local/rvm/gems/ruby-1.9.1-p378%global/bin"
@@ -303,6 +305,9 @@ So you can bind it to both M-r and M-s."
  '(comint-completion-addsuffix t)       ; insert space/slash after file completion
  )
 
+;;; RE-BUILDER (PERL)
+(require 're-builder-x)
+
 ;;; RUBY-TEST MODE
 (require 'ruby-test-mode)
 
@@ -346,4 +351,3 @@ So you can bind it to both M-r and M-s."
 (global-set-key (kbd "C-x I") 'indent-buffer)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 (global-set-key (kbd "C-c C-s") 'swap-windows)
-

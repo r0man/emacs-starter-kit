@@ -1,9 +1,10 @@
 (require 'erc-extension)
 (require 'erc-highlight-nicknames)
 (require 'erc-join)
+(require 'erc-nick-notify)
 (require 'erc-robot)
-(require 'fortune-ext)
 (require 'erc-services)
+(require 'fortune-ext)
 
 ;; Join channels in automatical.
 (erc-autojoin-mode 1)
