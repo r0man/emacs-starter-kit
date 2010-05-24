@@ -230,6 +230,9 @@ So you can bind it to both M-r and M-s."
 (require 'git-blame)
 (require 'magit)
 
+;;; HASKELL
+(load "~/.emacs.d/haskell-mode-2.7.0/haskell-site-file")
+
 ;;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
       '(try-expand-all-abbrevs
@@ -270,8 +273,9 @@ So you can bind it to both M-r and M-s."
                 html-mode-hook
                 LaTeX-mode-hook
                 ruby-mode-hook
-                yaml-mode
-                css-mode
+                yaml-mode-hook
+                css-mode-hook
+                rcirc-mode-hook
                 slime-mode-hook))
   (add-hook hook (lambda () (smart-tab-mode t))))
 
