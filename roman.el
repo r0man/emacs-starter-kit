@@ -181,29 +181,6 @@ So you can bind it to both M-r and M-s."
       emms-playlist-buffer-name "*Music*"
       emms-source-file-default-directory "~/Music")
 
-;; ;;; ERC MODE
-;; (setq erc-nick "r0man")
-;; (setq erc-autojoin-channels-alist '(("freenode.net" "#clojure" "#soundcloudteam")))
-;; (if (file-exists-p "~/.erc.el")
-;;     (load-file "~/.erc.el"))
-;; (require 'erc-customize)
-(eval-after-load 'rcirc
-  '(progn
-     (require 'rcirc-color)
-     (require 'rcirc-completion)
-     (require 'rcirc-late-fix)
-     (if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
-     (setq rcirc-default-nick "r0man"
-           rcirc-default-user-name "r0man"
-           rcirc-default-full-name "Roman Scherer")
-     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#soundcloudteam"))))
-     (add-hook 'rcirc-mode-hook (lambda ()
-                                  (set (make-local-variable 'scroll-conservatively) 8192)
-                                  (rcirc-track-minor-mode 1)
-                                  (rcirc-omit-mode)
-                                  (flyspell-mode 1)))))
-rcirc-authinfo-file-name
-
 ;;; ESHELL
 (eval-after-load 'esh-opt
   '(set-face-attribute 'eshell-prompt nil :foreground "Black"))
@@ -320,6 +297,23 @@ rcirc-authinfo-file-name
  '(comint-completion-addsuffix t)       ; insert space/slash after file completion
  )
 
+;;; RCIRC
+(eval-after-load 'rcirc
+  '(progn
+     (require 'rcirc-color)
+     (require 'rcirc-completion)
+     (require 'rcirc-late-fix)
+     (require 'rcirc-notify)
+     (if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
+     (setq rcirc-default-nick "r0man"
+           rcirc-default-user-name "r0man"
+           rcirc-default-full-name user-full-name)
+     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#soundcloudteam"))))
+     (add-hook 'rcirc-mode-hook (lambda ()
+                                  (set (make-local-variable 'scroll-conservatively) 8192)
+                                  (rcirc-track-minor-mode 1)
+                                  (flyspell-mode 1)))))
+
 ;;; RE-BUILDER (PERL)
 (require 're-builder-x)
 
@@ -346,12 +340,6 @@ rcirc-authinfo-file-name
   (switch-to-rails-runner-buffer))
 
 (ad-activate 'rails/compile/single-file)
-
-;;; SHELL MODE
-;; (require 'shell)
-;; (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-;; (define-key shell-mode-map (kbd "M-r") 'ido-complete-comint-input-ring)
-;; (define-key shell-mode-map (kbd "M-s") 'ido-complete-comint-input-ring)
 
 ;;; KEY BINDINGS
 
