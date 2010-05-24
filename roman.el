@@ -139,14 +139,14 @@ So you can bind it to both M-r and M-s."
 (setq compilation-scroll-output 't)
 
 ;; CLOJURE-MODE
-(defun clojure-mode-setup-indent ()
+(defun define-clojure-indent-words ()
   (define-clojure-indent (are 1))
   (define-clojure-indent (datastore-test 1))
   (define-clojure-indent (memcache-test 1))
   (define-clojure-indent (task-queue-test 1))
   (define-clojure-indent (uncountable 1)))
 
-(add-hook 'clojure-mode-hook 'clojure-mode-setup-indent)
+(add-hook 'clojure-mode-hook 'define-clojure-indent-words)
 
 ;; DESKTOP SAVE MODE
 (setq desktop-path '("." "~" "~/.emacs.d"))
