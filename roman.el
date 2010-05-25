@@ -135,6 +135,9 @@ So you can bind it to both M-r and M-s."
 ;; Enable cut-and-paste between Emacs and X clipboard.
 (setq x-select-enable-clipboard t)
 
+;; Controls the operation of the TAB key.
+(setq tab-always-indent 'complete)
+
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
 
