@@ -355,6 +355,7 @@ So you can bind it to both M-r and M-s."
 ;; Cycle through or spawn new shell buffers.
 (global-set-key [f5] 'compile)
 (global-set-key [f11] 'fullscreen)
-(global-set-key (kbd "C-x I") 'indent-buffer)
-(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 (global-set-key (kbd "C-c C-s") 'swap-windows)
+(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
+(global-set-key (kbd "C-x I") 'indent-buffer)
+(global-set-key (kbd "C-x TAB") 'indent-rigidly)
