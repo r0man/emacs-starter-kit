@@ -103,7 +103,7 @@
 (add-to-list 'auto-mode-alist '("\\.xml$" . xml-mode))
 
 (eval-after-load 'grep
-  '(progn
+  '(when (boundp 'grep-find-ignored-files)
     (add-to-list 'grep-find-ignored-files "target")
     (add-to-list 'grep-find-ignored-files "*.class")))
 
