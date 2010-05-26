@@ -309,6 +309,7 @@ So you can bind it to both M-r and M-s."
   '(progn
      (require 'rcirc-color)
      (require 'rcirc-completion)
+     (require 'rcirc-controls)
      (require 'rcirc-late-fix)
      (require 'rcirc-notify)
      (if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
