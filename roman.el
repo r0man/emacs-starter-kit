@@ -263,12 +263,6 @@ So you can bind it to both M-r and M-s."
               filename-and-process)
         (mark " " (name 16 -1) " " filename)))
 
-;;; MOZ-REPL MODE
-(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
-(add-hook 'javascript-mode-hook 'javascript-custom-setup)
-(defun javascript-custom-setup ()
-  (moz-minor-mode 1))
-
 ;;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
 (dolist (hook '(emacs-lisp-mode-hook
