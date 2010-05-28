@@ -229,9 +229,9 @@ So you can bind it to both M-r and M-s."
 (setq flyspell-abbrev-p t) 
 
 ;;; GIT
-(add-to-list 'load-path "/usr/share/doc/git-core/contrib/emacs")
-(require 'git-blame)
 (require 'magit)
+(autoload 'mo-git-blame-file "mo-git-blame" nil t)
+(autoload 'mo-git-blame-current "mo-git-blame" nil t)
 
 ;;; HASKELL
 (load "~/.emacs.d/haskell-mode-2.7.0/haskell-site-file")
@@ -349,11 +349,14 @@ So you can bind it to both M-r and M-s."
 (global-set-key (kbd "C-x h") 'mark-whole-buffer)
 (global-set-key (kbd "C-x ^") 'enlarge-window)
 (global-set-key (kbd "C-x C-o") 'delete-blank-lines)
+(global-unset-key (kbd "C-x g"))
 
 ;; Cycle through or spawn new shell buffers.
-(global-set-key [f5] 'compile)
-(global-set-key [f11] 'fullscreen)
 (global-set-key (kbd "C-c C-s") 'swap-windows)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
+(global-set-key (kbd "C-x C-g b") 'mo-git-blame-current)
+(global-set-key (kbd "C-x C-g s") 'magit-status)
 (global-set-key (kbd "C-x I") 'indent-buffer)
 (global-set-key (kbd "C-x TAB") 'indent-rigidly)
+(global-set-key [f11] 'fullscreen)
+(global-set-key [f5] 'compile)
