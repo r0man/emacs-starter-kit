@@ -25,11 +25,11 @@
 
 (setq
  exec-path
- (list  
+ (list
   (expand-file-name "~/local/appengine-java-sdk-1.3.3.1/bin")
   (expand-file-name "~/bin")
   (expand-file-name "~/local/hadoop/bin")
-  (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")  
+  (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
   "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
   "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
   "/usr/local/rvm/gems/ruby-1.9.1-p378%global/bin"
@@ -110,16 +110,14 @@ previous or next elements like Comint's normal completion.
 So you can bind it to both M-r and M-s."
   (interactive)
   (unless (null comint-input-ring)
-    (let* ((elt (ido-completing-read
-		 "History: " (delete "" (remove-duplicates (cddr (ring-elements comint-input-ring)) :test #'string=))
-		 nil t))
-	   (pos (comint-previous-matching-input-string-position
-		 (regexp-quote elt) 1)))
+    (let* ((elt (ido-completing-read "History: " (delete "" (remove-duplicates (cddr (ring-elements comint-input-ring)) :test #'string=)) nil t))
+           (pos (comint-previous-matching-input-string-position
+                 (regexp-quote elt) 1)))
       (unless (null pos)
-	(setq comint-input-ring-index pos)
-	(message "History item: %d" (1+ pos))
-	(comint-delete-input)
-	(insert (ring-ref comint-input-ring pos))))))
+        (setq comint-input-ring-index pos)
+        (message "History item: %d" (1+ pos))
+        (comint-delete-input)
+        (insert (ring-ref comint-input-ring pos))))))
 
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
@@ -226,7 +224,7 @@ So you can bind it to both M-r and M-s."
   (add-hook hook 'flyspell-mode))
 
 ; Add corrected words to abbreviation table.
-(setq flyspell-abbrev-p t) 
+(setq flyspell-abbrev-p t)
 
 ;;; GIT
 (require 'magit)
@@ -342,6 +340,9 @@ So you can bind it to both M-r and M-s."
   (switch-to-rails-runner-buffer))
 
 (ad-activate 'rails/compile/single-file)
+
+;;; WHITESPACE-MODE
+(global-whitespace-mode)
 
 ;;; KEY BINDINGS
 
