@@ -308,7 +308,7 @@ So you can bind it to both M-r and M-s."
      (setq rcirc-default-nick "r0man"
            rcirc-default-user-name "r0man"
            rcirc-default-full-name user-full-name)
-     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#soundcloudteam"))))
+     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure"))))
      (add-hook 'rcirc-mode-hook (lambda ()
                                   (set (make-local-variable 'scroll-conservatively) 8192)
                                   (rcirc-track-minor-mode 1)
@@ -342,7 +342,9 @@ So you can bind it to both M-r and M-s."
 (ad-activate 'rails/compile/single-file)
 
 ;;; WHITESPACE-MODE
-(global-whitespace-mode)
+;; (global-whitespace-mode)
+;; (setq whitespace-style
+;;       '(spaces tabs))
 
 ;;; KEY BINDINGS
 
