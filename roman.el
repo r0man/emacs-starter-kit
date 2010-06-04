@@ -216,9 +216,6 @@ So you can bind it to both M-r and M-s."
                 (or (getenv "HOSTNAME") (getenv "HOST") system-name) ":"
                 (eshell/pwd) (if (= (user-uid) 0) " # " " $ "))))
 
-;;; FORTUNE
-(setq fortune-file "~/.emacs.d/fortune-chucknorris")
-
 ;;; FLYSPELL MODE.
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook 'flyspell-mode))
@@ -270,7 +267,6 @@ So you can bind it to both M-r and M-s."
                 ruby-mode-hook
                 yaml-mode-hook
                 css-mode-hook
-                rcirc-mode-hook
                 slime-mode-hook))
   (add-hook hook (lambda () (smart-tab-mode t))))
 
@@ -295,24 +291,6 @@ So you can bind it to both M-r and M-s."
  '(comint-input-ignoredups t)           ; no duplicates in command history
  '(comint-completion-addsuffix t)       ; insert space/slash after file completion
  )
-
-;;; RCIRC
-(eval-after-load 'rcirc
-  '(progn
-     (require 'rcirc-color)
-     (require 'rcirc-completion)
-     (require 'rcirc-controls)
-     (require 'rcirc-late-fix)
-     (require 'rcirc-notify)
-     (if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
-     (setq rcirc-default-nick "r0man"
-           rcirc-default-user-name "r0man"
-           rcirc-default-full-name user-full-name)
-     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure"))))
-     (add-hook 'rcirc-mode-hook (lambda ()
-                                  (set (make-local-variable 'scroll-conservatively) 8192)
-                                  (rcirc-track-minor-mode 1)
-                                  (flyspell-mode 1)))))
 
 ;;; RE-BUILDER (PERL)
 (require 're-builder-x)
