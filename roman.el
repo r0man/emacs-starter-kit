@@ -11,7 +11,7 @@
        'idle-highlight
        'inf-ruby
        'json
-;       'paredit
+                                        ;       'paredit
        'ruby-mode
        'ruby-test-mode
        'sass-mode
@@ -71,6 +71,22 @@ there's a region, all lines that region covers will be duplicated."
         (insert region)
         (setq end (point)))
       (goto-char (+ origin (* (length region) arg) arg)))))
+
+(require 'slime)
+(defun lein-swank ()
+  (interactive)
+  (let ((root (locate-dominating-file default-directory "project.clj")))
+    (when (not root)
+      (error "Not in a Leiningen project."))
+    ;; you can customize slime-port using .dir-locals.el
+    (shell-command (format "cd %s && lein swank %s &" root slime-port)
+                   "*lein-swank*")
+    (set-process-filter (get-buffer-process "*lein-swank*")
+                        (lambda (process output)
+                          (when (string-match "Connection opened on" output)
+                            (slime-connect "localhost" slime-port)
+                            (set-process-filter process nil))))
+    (message "Starting swank server...")))
 
 (defun google (query)
   "Search for QUERY on Google."
@@ -143,6 +159,7 @@ So you can bind it to both M-r and M-s."
 (defun define-clojure-indent-words ()
   (define-clojure-indent (are 1))
   (define-clojure-indent (datastore-test 1))
+  (define-clojure-indent (ensure-open 1))
   (define-clojure-indent (memcache-test 1))
   (define-clojure-indent (task-queue-test 1))
   (define-clojure-indent (uncountable 1)))
@@ -220,7 +237,7 @@ So you can bind it to both M-r and M-s."
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook 'flyspell-mode))
 
-; Add corrected words to abbreviation table.
+                                        ; Add corrected words to abbreviation table.
 (setq flyspell-abbrev-p t)
 
 ;;; GIT
@@ -257,6 +274,22 @@ So you can bind it to both M-r and M-s."
               " "
               filename-and-process)
         (mark " " (name 16 -1) " " filename)))
+
+;;; RCIRC
+(eval-after-load 'rcirc
+  '(progn
+     (require 'rcirc-color)
+     (require 'rcirc-late-fix)
+     (require 'rcirc-notify)
+     (if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
+     (setq rcirc-default-nick "r0man"
+           rcirc-default-user-name "r0man"
+           rcirc-default-full-name user-full-name)
+     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure"))))
+     (add-hook 'rcirc-mode-hook (lambda ()
+                                  (set (make-local-variable 'scroll-conservatively) 8192)
+                                  (rcirc-track-minor-mode 1)
+                                  (flyspell-mode 1)))))
 
 ;;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
