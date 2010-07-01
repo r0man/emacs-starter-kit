@@ -26,7 +26,8 @@
 (setq
  exec-path
  (list
-  (expand-file-name "~/local/appengine-java-sdk-1.3.3.1/bin")
+  (expand-file-name "~/local/appengine-java-sdk-1.3.4/bin")
+  (expand-file-name "~/local/google_appengine")
   (expand-file-name "~/bin")
   (expand-file-name "~/local/hadoop/bin")
   (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
