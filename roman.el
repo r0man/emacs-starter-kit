@@ -11,7 +11,7 @@
        'idle-highlight
        'inf-ruby
        'json
-                                        ;       'paredit
+       'paredit
        'ruby-mode
        'ruby-test-mode
        'sass-mode
