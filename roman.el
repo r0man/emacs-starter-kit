@@ -5,7 +5,6 @@
        'clojure-mode
        'clojure-test-mode
        'css-mode
-       'emms
        'gist
        'haml-mode
        'idle-highlight
@@ -188,18 +187,21 @@ So you can bind it to both M-r and M-s."
 (desktop-save-mode 1)
 
 ;;; EMMS
-(if (file-exists-p "~/.lastfm.el")
-    (load-file "~/.lastfm.el"))
-(require 'emms-setup)
-(require 'emms-playing-time)
-(require 'emms-lastfm)
-(emms-all)
-(emms-default-players)
-(emms-mode-line 1)
-(emms-playing-time 1)
-(setq emms-info-asynchronously nil
-      emms-playlist-buffer-name "*Music*"
-      emms-source-file-default-directory "~/Music")
+;; (add-to-list 'load-path "~/.emacs.d/emms/lisp")
+;; (require 'emms-setup)
+;; (require 'emms-lastfm-client)
+;; (emms-standard)
+;; (emms-default-players)
+;; (require 'emms-setup)
+;; (require 'emms-playing-time)
+
+;; (emms-all)
+;; (emms-default-players)
+;; (emms-mode-line 1)
+;; (emms-playing-time 1)
+;; (setq emms-info-asynchronously nil
+;;       emms-playlist-buffer-name "*Music*"
+;;       emms-source-file-default-directory "~/Music")
 
 ;;; ESHELL
 (eval-after-load 'esh-opt
