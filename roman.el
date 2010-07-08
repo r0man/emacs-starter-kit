@@ -30,10 +30,6 @@
   (expand-file-name "~/bin")
   (expand-file-name "~/local/hadoop/bin")
   (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
-  "/usr/local/rvm/rubies/ruby-1.9.1-p378/bin"
-  "/usr/local/rvm/gems/ruby-1.9.1-p378/bin"
-  "/usr/local/rvm/gems/ruby-1.9.1-p378%global/bin"
-  "/usr/local/rvm/bin"
   "/usr/local/sbin"
   "/usr/local/bin"
   "/usr/sbin"
@@ -41,8 +37,6 @@
   "/sbin"
   "/bin"
   "/usr/games"))
-
-(require 'rvm)
 
 ;;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
@@ -202,6 +196,10 @@ So you can bind it to both M-r and M-s."
 ;; (setq emms-info-asynchronously nil
 ;;       emms-playlist-buffer-name "*Music*"
 ;;       emms-source-file-default-directory "~/Music")
+
+;;; RVM
+(require 'rvm)
+(rvm-use-default)
 
 ;;; ESHELL
 (eval-after-load 'esh-opt
