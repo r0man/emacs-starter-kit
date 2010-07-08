@@ -295,6 +295,9 @@ So you can bind it to both M-r and M-s."
                                   (rcirc-track-minor-mode 1)
                                   (flyspell-mode 1)))))
 
+;;; SASS
+(add-to-list 'auto-mode-alist '("\\.scss$" . sass-mode))
+
 ;;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
 (dolist (hook '(emacs-lisp-mode-hook
