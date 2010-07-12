@@ -295,7 +295,8 @@ So you can bind it to both M-r and M-s."
 
 ;;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
-(dolist (hook '(emacs-lisp-mode-hook
+(dolist (hook '(c-mode-hook
+                emacs-lisp-mode-hook
                 haml-mode-hook
                 html-mode-hook
                 LaTeX-mode-hook
