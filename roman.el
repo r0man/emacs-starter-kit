@@ -25,7 +25,7 @@
 (setq
  exec-path
  (list
-  (expand-file-name "~/local/appengine-java-sdk-1.3.4/bin")
+  (expand-file-name "~/local/appengine-java-sdk-1.3.5/bin")
   (expand-file-name "~/local/google_appengine")
   (expand-file-name "~/bin")
   (expand-file-name "~/local/hadoop/bin")
@@ -292,6 +292,9 @@ So you can bind it to both M-r and M-s."
                                   (set (make-local-variable 'scroll-conservatively) 8192)
                                   (rcirc-track-minor-mode 1)
                                   (flyspell-mode 1)))))
+
+;;; SASS
+(add-to-list 'auto-mode-alist '("\\.scss$" . sass-mode))
 
 ;;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
