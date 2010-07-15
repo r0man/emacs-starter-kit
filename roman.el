@@ -14,6 +14,8 @@
        'ruby-mode
        'ruby-test-mode
        'sass-mode
+       'slime
+       'slime-repl
        'smart-tab
        'yaml-mode
        'yasnippet-bundle
@@ -336,27 +338,29 @@ So you can bind it to both M-r and M-s."
 
 ;;; RUBY-TEST MODE
 (require 'ruby-test-mode)
+(setq ruby-test-ruby-executables '("/home/roman/.rvm/rubies/ruby-1.9.1-p376/bin/ruby")
+      ruby-test-rspec-executables '("/home/roman/.rvm/gems/ruby-1.9.1-p376/bin/spec"))
 
-;;; EMACS RAILS RELOADED
-(setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
-(setq rails/bundles/disabled-list '(apidoc generator webserver))
-(require 'rails-autoload)
+;; ;;; EMACS RAILS RELOADED
+;; (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
+;; (setq rails/bundles/disabled-list '(apidoc generator webserver))
+;; (require 'rails-autoload)
 
-(defun switch-to-rails-runner-buffer ()
-  (switch-to-buffer-other-window rails/runner/buffer-name)
-  (other-window -1))
+;; (defun switch-to-rails-runner-buffer ()
+;;   (switch-to-buffer-other-window rails/runner/buffer-name)
+;;   (other-window -1))
 
-(defadvice rails/compile/current-method (after rails/compile/current-method-advice) ()
-  "Switch to the rails runner buffer after running the method test."
-  (switch-to-rails-runner-buffer))
+;; (defadvice rails/compile/current-method (after rails/compile/current-method-advice) ()
+;;   "Switch to the rails runner buffer after running the method test."
+;;   (switch-to-rails-runner-buffer))
 
-(ad-activate 'rails/compile/current-method)
+;; (ad-activate 'rails/compile/current-method)
 
-(defadvice rails/compile/single-file (after rails/compile/single-file-advice) ()
-  "Switch to the rails runner buffer after running the file test."
-  (switch-to-rails-runner-buffer))
+;; (defadvice rails/compile/single-file (after rails/compile/single-file-advice) ()
+;;   "Switch to the rails runner buffer after running the file test."
+;;   (switch-to-rails-runner-buffer))
 
-(ad-activate 'rails/compile/single-file)
+;; (ad-activate 'rails/compile/single-file)
 
 ;;; WHITESPACE-MODE
 ;; (global-whitespace-mode)
