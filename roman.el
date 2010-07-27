@@ -42,6 +42,7 @@
 
 ;;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
+(setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
 
 (defun chomp (str)
   "Chomp leading and tailing whitespace from STR."
