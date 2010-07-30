@@ -200,6 +200,9 @@ So you can bind it to both M-r and M-s."
 ;;       emms-playlist-buffer-name "*Music*"
 ;;       emms-source-file-default-directory "~/Music")
 
+;;; GIST
+(setq gist-view-gist t)
+
 ;;; RVM
 (require 'rvm)
 (rvm-use-default)
