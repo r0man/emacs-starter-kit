@@ -164,25 +164,6 @@ So you can bind it to both M-r and M-s."
 
 (add-hook 'clojure-mode-hook 'define-clojure-indent-words)
 
-;; DESKTOP SAVE MODE
-(setq desktop-path '("." "~" "~/.emacs.d"))
-(setq desktop-save 'if-exists)
-(setq desktop-globals-to-save
-      (append '((extended-command-history . 30)
-                (file-name-history        . 100)
-                (grep-history             . 30)
-                (compile-history          . 30)
-                (minibuffer-history       . 50)
-                (query-replace-history    . 60)
-                (read-expression-history  . 60)
-                (regexp-history           . 60)
-                (regexp-search-ring       . 20)
-                (search-ring              . 20)
-                (shell-command-history    . 250)
-                tags-file-name
-                register-alist)))
-(desktop-save-mode 1)
-
 ;;; EMMS
 ;; (add-to-list 'load-path "~/.emacs.d/emms/lisp")
 ;; (require 'emms-setup)
