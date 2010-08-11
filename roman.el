@@ -211,8 +211,7 @@ So you can bind it to both M-r and M-s."
 (eval-after-load 'esh-opt
   '(set-face-attribute 'eshell-prompt nil :foreground "Black"))
 
-(setq eshell-aliases-file "~/.emacs.d/eshell.aliases"
-      eshell-save-history-on-exit t)
+(setq eshell-aliases-file "~/.emacs.d/eshell.aliases")
 
 (defun eshell/emacs (&rest args)
   "Open a file in emacs. Some habits die hard."
