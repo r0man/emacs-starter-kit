@@ -164,23 +164,6 @@ So you can bind it to both M-r and M-s."
 
 (add-hook 'clojure-mode-hook 'define-clojure-indent-words)
 
-;;; EMMS
-;; (add-to-list 'load-path "~/.emacs.d/emms/lisp")
-;; (require 'emms-setup)
-;; (require 'emms-lastfm-client)
-;; (emms-standard)
-;; (emms-default-players)
-;; (require 'emms-setup)
-;; (require 'emms-playing-time)
-
-;; (emms-all)
-;; (emms-default-players)
-;; (emms-mode-line 1)
-;; (emms-playing-time 1)
-;; (setq emms-info-asynchronously nil
-;;       emms-playlist-buffer-name "*Music*"
-;;       emms-source-file-default-directory "~/Music")
-
 ;;; GIST
 (setq gist-view-gist t)
 
