@@ -165,42 +165,6 @@ So you can bind it to both M-r and M-s."
 
 (add-hook 'clojure-mode-hook 'define-clojure-indent-words)
 
-;; DESKTOP SAVE MODE
-(setq desktop-path '("." "~" "~/.emacs.d"))
-(setq desktop-save 'if-exists)
-(setq desktop-globals-to-save
-      (append '((extended-command-history . 30)
-                (file-name-history        . 100)
-                (grep-history             . 30)
-                (compile-history          . 30)
-                (minibuffer-history       . 50)
-                (query-replace-history    . 60)
-                (read-expression-history  . 60)
-                (regexp-history           . 60)
-                (regexp-search-ring       . 20)
-                (search-ring              . 20)
-                (shell-command-history    . 250)
-                tags-file-name
-                register-alist)))
-(desktop-save-mode 1)
-
-;;; EMMS
-;; (add-to-list 'load-path "~/.emacs.d/emms/lisp")
-;; (require 'emms-setup)
-;; (require 'emms-lastfm-client)
-;; (emms-standard)
-;; (emms-default-players)
-;; (require 'emms-setup)
-;; (require 'emms-playing-time)
-
-;; (emms-all)
-;; (emms-default-players)
-;; (emms-mode-line 1)
-;; (emms-playing-time 1)
-;; (setq emms-info-asynchronously nil
-;;       emms-playlist-buffer-name "*Music*"
-;;       emms-source-file-default-directory "~/Music")
-
 ;;; GIST
 (setq gist-view-gist t)
 
@@ -212,8 +176,7 @@ So you can bind it to both M-r and M-s."
 (eval-after-load 'esh-opt
   '(set-face-attribute 'eshell-prompt nil :foreground "Black"))
 
-(setq eshell-aliases-file "~/.emacs.d/eshell.aliases"
-      eshell-save-history-on-exit t)
+(setq eshell-aliases-file "~/.emacs.d/eshell.aliases")
 
 (defun eshell/emacs (&rest args)
   "Open a file in emacs. Some habits die hard."
