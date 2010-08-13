@@ -43,6 +43,7 @@
 ;;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
+(setenv "ANDROID_HOME" (expand-file-name "~/local/android-sdk-linux_86"))
 
 (defun chomp (str)
   "Chomp leading and tailing whitespace from STR."
