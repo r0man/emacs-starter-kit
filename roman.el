@@ -10,7 +10,6 @@
        'idle-highlight
        'inf-ruby
        'json
-       'paredit
        'ruby-mode
        'ruby-test-mode
        'sass-mode
