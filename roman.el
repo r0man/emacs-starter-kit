@@ -154,6 +154,8 @@ So you can bind it to both M-r and M-s."
 
 ;; CLOJURE-MODE
 (defun define-clojure-indent-words ()
+  (define-clojure-indent (database-test 1))
+  (define-clojure-indent (defmethod 1))
   (define-clojure-indent (are 1))
   (define-clojure-indent (datastore-test 1))
   (define-clojure-indent (user-test 1))
