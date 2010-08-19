@@ -10,7 +10,6 @@
        'idle-highlight
        'inf-ruby
        'json
-       'paredit
        'ruby-mode
        'ruby-test-mode
        'sass-mode
@@ -43,6 +42,7 @@
 ;;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
+(setenv "ANDROID_HOME" (expand-file-name "~/local/android-sdk-linux_86"))
 
 (defun chomp (str)
   "Chomp leading and tailing whitespace from STR."
@@ -155,9 +155,11 @@ So you can bind it to both M-r and M-s."
 ;; CLOJURE-MODE
 (defun define-clojure-indent-words ()
   (define-clojure-indent (are 1))
+  (define-clojure-indent (database-test 1))
   (define-clojure-indent (datastore-test 1))
   (define-clojure-indent (emits-once 1))
   (define-clojure-indent (ensure-open 1))
+  (define-clojure-indent (expect 1))
   (define-clojure-indent (memcache-test 1))
   (define-clojure-indent (task-queue-test 1))
   (define-clojure-indent (uncountable 1))
