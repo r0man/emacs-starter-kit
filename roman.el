@@ -156,11 +156,13 @@ So you can bind it to both M-r and M-s."
 (defun define-clojure-indent-words ()
   (define-clojure-indent (are 1))
   (define-clojure-indent (datastore-test 1))
-  (define-clojure-indent (user-test 1))
+  (define-clojure-indent (emits-once 1))
   (define-clojure-indent (ensure-open 1))
   (define-clojure-indent (memcache-test 1))
   (define-clojure-indent (task-queue-test 1))
-  (define-clojure-indent (uncountable 1)))
+  (define-clojure-indent (uncountable 1))
+  (define-clojure-indent (user-test 1))
+  )
 
 (add-hook 'clojure-mode-hook 'define-clojure-indent-words)
 
