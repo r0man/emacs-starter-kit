@@ -43,6 +43,10 @@
 (setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
 (setenv "ANDROID_HOME" (expand-file-name "~/local/android-sdk-linux_86"))
 
+;; Amazon EC2
+(setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
+(setenv "EC2_CERT" (expand-file-name "~/.ec2/cert-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
+
 (defun chomp (str)
   "Chomp leading and tailing whitespace from STR."
   (let ((s (if (symbolp str) (symbol-name str) str)))
