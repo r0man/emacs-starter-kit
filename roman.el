@@ -152,6 +152,12 @@ So you can bind it to both M-r and M-s."
 ;; Controls the operation of the TAB key.
 (setq tab-always-indent 'complete)
 
+;; ANDROID
+(require 'android)
+
+;; CEDET
+(require 'cedet)
+
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
 
@@ -328,3 +334,4 @@ So you can bind it to both M-r and M-s."
 (global-set-key (kbd "C-x TAB") 'indent-rigidly)
 (global-set-key [f11] 'fullscreen)
 (global-set-key [f5] 'compile)
+
