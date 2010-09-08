@@ -23,11 +23,18 @@
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
+;; ANDROID
+(setenv "ANDROID_HOME" (expand-file-name "~/local/android-sdk-linux_86"))
+(add-to-list 'load-path (concat (getenv "ANDROID_HOME") "/tools/lib"))
+(require 'android)
+(require 'android-mode)
+
 (setq
  exec-path
  (list
   (expand-file-name "~/local/appengine-java-sdk-1.3.5/bin")
   (expand-file-name "~/local/google_appengine")
+  (concat (getenv "ANDROID_HOME") "/tools")
   (expand-file-name "~/bin")
   (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
   "/usr/local/sbin"
@@ -41,7 +48,6 @@
 ;;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
-(setenv "ANDROID_HOME" (expand-file-name "~/local/android-sdk-linux_86"))
 
 ;; Amazon EC2
 (setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
@@ -151,9 +157,6 @@ So you can bind it to both M-r and M-s."
 
 ;; Controls the operation of the TAB key.
 (setq tab-always-indent 'complete)
-
-;; ANDROID
-(require 'android)
 
 ;; CEDET
 (require 'cedet)
