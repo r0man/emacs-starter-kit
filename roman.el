@@ -28,6 +28,8 @@
 (add-to-list 'load-path (concat (getenv "ANDROID_HOME") "/tools/lib"))
 (require 'android)
 (require 'android-mode)
+(setq android-mode-sdk-dir (getenv "ANDROID_HOME")
+      android-mode-avd "samsung")
 
 (setq
  exec-path
@@ -183,6 +185,10 @@ So you can bind it to both M-r and M-s."
 ;;; GIST
 (setq gist-view-gist t)
 
+;; JAVA
+(require 'java-mode-indent-annotations)
+(add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
+
 ;;; RVM
 (require 'rvm)
 (rvm-use-default)
@@ -257,6 +263,7 @@ So you can bind it to both M-r and M-s."
                 emacs-lisp-mode-hook
                 haml-mode-hook
                 html-mode-hook
+                java-mode-hook
                 LaTeX-mode-hook
                 ruby-mode-hook
                 yaml-mode-hook
