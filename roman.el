@@ -37,7 +37,8 @@
   (expand-file-name "~/local/appengine-java-sdk-1.3.5/bin")
   (expand-file-name "~/local/google_appengine")
   (concat (getenv "ANDROID_HOME") "/tools")
-  (expand-file-name "~/bin")
+  (expand-file-name "~/bin")  
+  (expand-file-name "~/local/hadoop/bin")
   (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
   "/usr/local/sbin"
   "/usr/local/bin"
