@@ -204,6 +204,13 @@ So you can bind it to both M-r and M-s."
                                         ; Add corrected words to abbreviation table.
 (setq flyspell-abbrev-p t)
 
+;; FLYMAKE (fix the annoying dialog)
+(require 'flymake)
+(defun flymake-report-fatal-status (status warning)
+  "Display a warning and switch flymake mode off."
+  (message (format "Flymake: %s. Flymake will be switched OFF" warning))
+  (flymake-mode 0))
+
 ;;; GIT
 (require 'magit)
 (autoload 'mo-git-blame-file "mo-git-blame" nil t)
