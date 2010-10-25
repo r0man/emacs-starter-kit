@@ -161,6 +161,15 @@ So you can bind it to both M-r and M-s."
 ;; Controls the operation of the TAB key.
 (setq tab-always-indent 'complete)
 
+;; AUTO-COMPLETE
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+;; AC-SLIME
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+
 ;; CEDET
 (require 'cedet)
 
