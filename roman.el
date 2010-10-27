@@ -37,8 +37,9 @@
   (expand-file-name "~/local/appengine-java-sdk-1.3.5/bin")
   (expand-file-name "~/local/google_appengine")
   (concat (getenv "ANDROID_HOME") "/tools")
-  (expand-file-name "~/bin")
-  (expand-file-name "~/local/hadoop/src/contrib/cloud/src/py")
+  (expand-file-name "~/bin")  
+  (expand-file-name "~/local/hadoop/bin")
+  (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
   "/usr/local/sbin"
   "/usr/local/bin"
   "/usr/sbin"
@@ -166,6 +167,15 @@ So you can bind it to both M-r and M-s."
 ;; Controls the operation of the TAB key.
 (setq tab-always-indent 'complete)
 
+;; AUTO-COMPLETE
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+;; AC-SLIME
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+
 ;; CEDET
 (require 'cedet)
 
@@ -208,6 +218,13 @@ So you can bind it to both M-r and M-s."
 
                                         ; Add corrected words to abbreviation table.
 (setq flyspell-abbrev-p t)
+
+;; FLYMAKE (fix the annoying dialog)
+(require 'flymake)
+(defun flymake-report-fatal-status (status warning)
+  "Display a warning and switch flymake mode off."
+  (message (format "Flymake: %s. Flymake will be switched OFF" warning))
+  (flymake-mode 0))
 
 ;;; GIT
 (require 'magit)
