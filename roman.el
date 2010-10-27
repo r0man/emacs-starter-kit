@@ -26,8 +26,8 @@
 ;; ANDROID
 (setenv "ANDROID_HOME" (expand-file-name "~/local/android-sdk-linux_86"))
 (add-to-list 'load-path (concat (getenv "ANDROID_HOME") "/tools/lib"))
-(require 'android)
-(require 'android-mode)
+;; (require 'android)
+;; (require 'android-mode)
 (setq android-mode-sdk-dir (getenv "ANDROID_HOME")
       android-mode-avd "samsung")
 
@@ -38,7 +38,7 @@
   (expand-file-name "~/local/google_appengine")
   (concat (getenv "ANDROID_HOME") "/tools")
   (expand-file-name "~/bin")
-  (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
+  (expand-file-name "~/local/hadoop/src/contrib/cloud/src/py")
   "/usr/local/sbin"
   "/usr/local/bin"
   "/usr/sbin"
@@ -51,9 +51,15 @@
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
 
-;; Amazon EC2
+;; AMAZON WEB SERVICES
 (setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
 (setenv "EC2_CERT" (expand-file-name "~/.ec2/cert-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
+(let ((aws-credentials (expand-file-name "~/.aws.el")))
+  (if (file-exists-p aws-credentials)
+      (progn
+        (load-file aws-credentials)
+        (setenv "AWS_ACCESS_KEY_ID" aws-access-key-id)
+        (setenv "AWS_SECRET_ACCESS_KEY" aws-secret-access-key))))
 
 (defun chomp (str)
   "Chomp leading and tailing whitespace from STR."
