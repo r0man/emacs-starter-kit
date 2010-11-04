@@ -228,9 +228,6 @@ So you can bind it to both M-r and M-s."
 (autoload 'mo-git-blame-file "mo-git-blame" nil t)
 (autoload 'mo-git-blame-current "mo-git-blame" nil t)
 
-;;; HASKELL
-(load "~/.emacs.d/haskell-mode-2.7.0/haskell-site-file")
-
 ;;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
       '(try-expand-all-abbrevs
@@ -318,8 +315,8 @@ So you can bind it to both M-r and M-s."
 
 ;;; RUBY-TEST MODE
 (require 'ruby-test-mode)
-(setq ruby-test-ruby-executables '("/home/roman/.rvm/rubies/ruby-1.9.1-p376/bin/ruby")
-      ruby-test-rspec-executables '("/home/roman/.rvm/gems/ruby-1.9.1-p376/bin/spec"))
+(setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.1-p376/bin/ruby")
+      ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.1-p376/bin/spec"))
 
 ;; ;;; EMACS RAILS RELOADED
 ;; (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
