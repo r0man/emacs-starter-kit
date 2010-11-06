@@ -38,7 +38,6 @@
   (expand-file-name "~/local/google_appengine")
   (concat (getenv "ANDROID_HOME") "/tools")
   (expand-file-name "~/bin")  
-  (expand-file-name "~/local/hadoop/bin")
   (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
   "/usr/local/sbin"
   "/usr/local/bin"
@@ -185,6 +184,7 @@ So you can bind it to both M-r and M-s."
 ;; CLOJURE-MODE
 (defun define-clojure-indent-words ()
   (define-clojure-indent (are 1))
+  (define-clojure-indent (dbtest 1))
   (define-clojure-indent (database-test 1))
   (define-clojure-indent (datastore-test 1))
   (define-clojure-indent (emits-once 1))
