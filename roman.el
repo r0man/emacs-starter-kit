@@ -207,10 +207,9 @@ So you can bind it to both M-r and M-s."
 
 ;;; RVM
 (require 'rvm)
-(set 'rvm-executable
-     (if (file-exists-p "~/.rvm/bin/rvm")
-         "~/.rvm/bin/rvm" "/usr/local/bin/rvm"))
+(set 'rvm-executable (if (file-exists-p "~/.rvm/bin/rvm") "~/.rvm/bin/rvm" "/usr/local/bin/rvm"))
 (rvm-use-default)
+(setenv "rvm_path" "/usr/local/rvm")
 
 ;;; ESHELL
 (require 'eshell-ext)
