@@ -295,10 +295,12 @@ So you can bind it to both M-r and M-s."
 
 ;;; TRAMP
 (require 'tramp)
-(setq tramp-debug-buffer nil
-      tramp-default-method "ssh")
-(add-to-list 'tramp-default-method-alist '("bombaclaat" "" "ssh"))
-(add-to-list 'tramp-default-method-alist '("soundclaat" "" "ssh"))
+;; (setq tramp-debug-buffer nil tramp-default-method "ssh")
+;; (add-to-list 'tramp-default-method-alist
+;;              '("ichi" "rptn_deploy" "ssh"))
+;; (add-to-list 'tramp-default-user-alist
+;;              '("ssh" "ichi" "rptn_deploy"))
+
 
 (tramp-set-completion-function
  "ssh"
