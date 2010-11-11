@@ -20,6 +20,8 @@
        'yasnippet-bundle
        ))
 
+(add-to-list 'package-archives "http://repo.technomancy.us/emacs")
+
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
@@ -215,10 +217,7 @@ So you can bind it to both M-r and M-s."
 (require 'eshell-ext)
 
 ;;; FLYSPELL MODE.
-(dolist (hook '(LaTeX-mode-hook))
-  (add-hook hook 'flyspell-mode))
-
-                                        ; Add corrected words to abbreviation table.
+(dolist (hook '(LaTeX-mode-hook)) (add-hook hook 'flyspell-mode))
 (setq flyspell-abbrev-p t)
 
 ;; FLYMAKE (fix the annoying dialog)
@@ -230,8 +229,6 @@ So you can bind it to both M-r and M-s."
 
 ;;; GIT
 (require 'magit)
-(autoload 'mo-git-blame-file "mo-git-blame" nil t)
-(autoload 'mo-git-blame-current "mo-git-blame" nil t)
 
 ;;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
