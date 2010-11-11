@@ -207,7 +207,9 @@ So you can bind it to both M-r and M-s."
 
 ;;; RVM
 (require 'rvm)
+(set 'rvm-executable (if (file-exists-p "~/.rvm/bin/rvm") "~/.rvm/bin/rvm" "/usr/local/bin/rvm"))
 (rvm-use-default)
+(setenv "rvm_path" "/usr/local/rvm")
 
 ;;; ESHELL
 (require 'eshell-ext)
@@ -230,9 +232,6 @@ So you can bind it to both M-r and M-s."
 (require 'magit)
 (autoload 'mo-git-blame-file "mo-git-blame" nil t)
 (autoload 'mo-git-blame-current "mo-git-blame" nil t)
-
-;;; HASKELL
-(load "~/.emacs.d/haskell-mode-2.7.0/haskell-site-file")
 
 ;;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
@@ -296,10 +295,12 @@ So you can bind it to both M-r and M-s."
 
 ;;; TRAMP
 (require 'tramp)
-(setq tramp-debug-buffer nil
-      tramp-default-method "ssh")
-(add-to-list 'tramp-default-method-alist '("bombaclaat" "" "ssh"))
-(add-to-list 'tramp-default-method-alist '("soundclaat" "" "ssh"))
+;; (setq tramp-debug-buffer nil tramp-default-method "ssh")
+;; (add-to-list 'tramp-default-method-alist
+;;              '("ichi" "rptn_deploy" "ssh"))
+;; (add-to-list 'tramp-default-user-alist
+;;              '("ssh" "ichi" "rptn_deploy"))
+
 
 (tramp-set-completion-function
  "ssh"
@@ -321,8 +322,8 @@ So you can bind it to both M-r and M-s."
 
 ;;; RUBY-TEST MODE
 (require 'ruby-test-mode)
-(setq ruby-test-ruby-executables '("/home/roman/.rvm/rubies/ruby-1.9.1-p376/bin/ruby")
-      ruby-test-rspec-executables '("/home/roman/.rvm/gems/ruby-1.9.1-p376/bin/spec"))
+(setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.1-p376/bin/ruby")
+      ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.1-p376/bin/spec"))
 
 ;; ;;; EMACS RAILS RELOADED
 ;; (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
