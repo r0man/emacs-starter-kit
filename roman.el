@@ -20,8 +20,6 @@
        'yasnippet-bundle
        ))
 
-(add-to-list 'package-archives "http://repo.technomancy.us/emacs")
-
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
@@ -200,6 +198,9 @@ So you can bind it to both M-r and M-s."
 
 (add-hook 'clojure-mode-hook 'define-clojure-indent-words)
 
+;; CLOSURE-LINT-MODE
+(require 'closure-lint-mode)
+
 ;;; GIST
 (setq gist-view-gist t)
 
@@ -290,6 +291,9 @@ So you can bind it to both M-r and M-s."
                 slime-mode-hook))
   (add-hook hook (lambda () (smart-tab-mode t))))
 
+;; SOY-MODE
+(require 'soy-mode)
+
 ;;; TRAMP
 (require 'tramp)
 ;; (setq tramp-debug-buffer nil tramp-default-method "ssh")
@@ -365,4 +369,37 @@ So you can bind it to both M-r and M-s."
 (global-set-key (kbd "C-x TAB") 'indent-rigidly)
 (global-set-key [f11] 'fullscreen)
 (global-set-key [f5] 'compile)
+
+
+
+;; (defun flymake-gjslint-init ()
+;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;;                      'flymake-create-temp-inplace))
+;;          (local-file (file-relative-name
+;;                       temp-file
+;;                       (file-name-directory buffer-file-name))))
+;;     (list "gjslint" (list "" local-file))))
+
+;; (defun flymake-gjslint-enable ()
+;;   (when (and buffer-file-name
+;;              (file-writable-p
+;;               (file-name-directory buffer-file-name))
+;;              (file-writable-p buffer-file-name)
+;;              (if (fboundp 'tramp-list-remote-buffers)
+;;                  (not (subsetp
+;;                        (list (current-buffer))
+;;                        (tramp-list-remote-buffers)))
+;;                t))
+;;     (local-set-key (kbd "C-c d")
+;;                    'flymake-display-err-menu-for-current-line)
+;;     (flymake-mode t)))
+
+;; (eval-after-load 'espresso-mode
+;;   '(progn
+;;      (require 'flymake)
+;;      (push '(".+\\.js$" flymake-gjslint-init) flymake-allowed-file-name-masks)
+;;      (push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
+;;            flymake-err-line-patterns)
+;;      (add-hook 'espresso-mode-hook 'flymake-gjslint-enable)))
+
 
