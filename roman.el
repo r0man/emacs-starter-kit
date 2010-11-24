@@ -230,6 +230,8 @@ So you can bind it to both M-r and M-s."
 
 ;;; GIT
 (require 'magit)
+(let ((filename "/usr/share/doc/git/contrib/emacs/git-blame.el"))
+  (if (file-exists-p filename) (load-file filename)))
 
 ;;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
