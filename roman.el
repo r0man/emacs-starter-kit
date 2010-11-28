@@ -37,7 +37,7 @@
   (expand-file-name "~/local/appengine-java-sdk-1.3.5/bin")
   (expand-file-name "~/local/google_appengine")
   (concat (getenv "ANDROID_HOME") "/tools")
-  (expand-file-name "~/bin")  
+  (expand-file-name "~/bin")
   (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
   "/usr/local/sbin"
   "/usr/local/bin"
@@ -50,6 +50,9 @@
 ;;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
+
+;; DELETE TRAILING WHITESPACE
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; AMAZON WEB SERVICES
 (setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
@@ -267,8 +270,9 @@ So you can bind it to both M-r and M-s."
      (if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
      (setq rcirc-default-nick "r0man"
            rcirc-default-user-name "r0man"
-           rcirc-default-full-name user-full-name)
-     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure"))))
+           rcirc-default-full-name user-full-name
+           rcirc-private-chat t)
+     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql"))))
      (add-hook 'rcirc-mode-hook (lambda ()
                                   (set (make-local-variable 'scroll-conservatively) 8192)
                                   (rcirc-track-minor-mode 1)
@@ -288,6 +292,7 @@ So you can bind it to both M-r and M-s."
                 ruby-mode-hook
                 yaml-mode-hook
                 css-mode-hook
+                paredit-mode
                 slime-mode-hook))
   (add-hook hook (lambda () (smart-tab-mode t))))
 
