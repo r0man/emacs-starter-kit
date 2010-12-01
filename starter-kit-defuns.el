@@ -78,7 +78,7 @@ Symbols matching the text at point are put first in the completion list."
   (auto-fill-mode t))
 
 (defun turn-on-hl-line-mode ()
-  (if window-system (hl-line-mode t)))
+  (when (> (display-color-cells) 8) (hl-line-mode t)))
 
 (defun turn-on-save-place-mode ()
   (setq save-place t))
@@ -214,9 +214,20 @@ Symbols matching the text at point are put first in the completion list."
        (list ?\"))
   (paredit-mode 1))
 
+(defun esk-space-for-delimiter? (endp delimiter)
+  (not (member major-mode '(ruby-mode espresso-mode js2-mode))))
+
+(eval-after-load 'paredit
+  '(add-to-list 'paredit-space-for-delimiter-predicates
+                'esk-space-for-delimiter?))
+
 (defun message-point ()
   (interactive)
   (message "%s" (point)))
+
+(defun esk-disapproval ()
+  (interactive)
+  (insert "ಠ_ಠ"))
 
 (defun toggle-fullscreen ()
   (interactive)
