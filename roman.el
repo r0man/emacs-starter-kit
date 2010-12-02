@@ -156,9 +156,9 @@ So you can bind it to both M-r and M-s."
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
 
 ;; Use my custom color theme.
-;; (require 'color-theme)
-;; (load-file "~/.emacs.d/color-theme-roman.el")
-;; (color-theme-roman)
+(require 'color-theme)
+(load-file "~/.emacs.d/color-theme-roman.el")
+(color-theme-roman)
 
 ;; Highlight trailing whitespace
 (setq show-trailing-whitespace t)
