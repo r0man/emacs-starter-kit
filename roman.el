@@ -333,6 +333,14 @@ So you can bind it to both M-r and M-s."
 (setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.1-p376/bin/ruby")
       ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.1-p376/bin/spec"))
 
+;; SQL-MODE
+(setq sql-connection-alist
+      '(("rptn-admin"
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-user "ptn_admin")
+         (sql-database "ptn_development"))))
+
 ;; ;;; EMACS RAILS RELOADED
 ;; (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
 ;; (setq rails/bundles/disabled-list '(apidoc generator webserver))
