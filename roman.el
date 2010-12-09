@@ -169,6 +169,9 @@ So you can bind it to both M-r and M-s."
 ;; Controls the operation of the TAB key.
 (setq tab-always-indent 'complete)
 
+;; Do not add a final newline when saving.
+(setq require-final-newline nil)
+
 ;; AUTO-COMPLETE
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
