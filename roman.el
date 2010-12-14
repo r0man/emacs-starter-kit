@@ -338,11 +338,16 @@ So you can bind it to both M-r and M-s."
 
 ;; SQL-MODE
 (setq sql-connection-alist
-      '(("rptn-admin"
+      '(("rptn-admin-development"
          (sql-product 'mysql)
          (sql-server "localhost")
          (sql-user "ptn_admin")
-         (sql-database "ptn_development"))))
+         (sql-database "ptn_development"))
+        ("rptn-admin-test"
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-user "ptn")
+         (sql-database "ptnadmin_test"))))
 
 ;; ;;; EMACS RAILS RELOADED
 ;; (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
