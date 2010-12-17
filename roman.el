@@ -335,7 +335,13 @@ So you can bind it to both M-r and M-s."
 
 ;; SQL-MODE
 (setq sql-connection-alist
-      '(("rptn-admin"
+      '(("burningswell-development"
+         (sql-product 'postgres)
+         (sql-database "burningswell_development"))
+        ("burningswell-test"
+         (sql-product 'postgres)
+         (sql-database "burningswell_test"))
+        ("rptn-admin"
          (sql-product 'mysql)
          (sql-server "localhost")
          (sql-user "ptn_admin")
