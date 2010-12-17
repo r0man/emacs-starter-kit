@@ -169,6 +169,9 @@ So you can bind it to both M-r and M-s."
 ;; Controls the operation of the TAB key.
 (setq tab-always-indent 'complete)
 
+;; Do not add a final newline when saving.
+(setq require-final-newline nil)
+
 ;; AUTO-COMPLETE
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
@@ -345,7 +348,12 @@ So you can bind it to both M-r and M-s."
          (sql-product 'mysql)
          (sql-server "localhost")
          (sql-user "ptn_admin")
-         (sql-database "ptn_development"))))
+         (sql-database "ptn_development"))
+        ("rptn-admin-test"
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-user "ptn")
+         (sql-database "ptnadmin_test"))))
 
 ;; ;;; EMACS RAILS RELOADED
 ;; (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
