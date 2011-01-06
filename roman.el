@@ -191,6 +191,7 @@ So you can bind it to both M-r and M-s."
 (defun define-clojure-indent-words ()
   (define-clojure-indent (are 1))
   (define-clojure-indent (dbtest 1))
+  (define-clojure-indent (controller-test 1))
   (define-clojure-indent (database-test 1))
   (define-clojure-indent (datastore-test 1))
   (define-clojure-indent (emits-once 1))
@@ -199,8 +200,7 @@ So you can bind it to both M-r and M-s."
   (define-clojure-indent (memcache-test 1))
   (define-clojure-indent (task-queue-test 1))
   (define-clojure-indent (uncountable 1))
-  (define-clojure-indent (user-test 1))
-  )
+  (define-clojure-indent (user-test 1)))
 
 (add-hook 'clojure-mode-hook 'define-clojure-indent-words)
 
@@ -344,6 +344,16 @@ So you can bind it to both M-r and M-s."
         ("burningswell-test"
          (sql-product 'postgres)
          (sql-database "burningswell_test"))
+        ("cql-mysql"
+         (sql-product 'postgres)
+         (sql-database "cql")
+         (sql-user "cql")
+         (sql-password "cql"))
+        ("cql-postgresql"
+         (sql-product 'postgres)
+         (sql-database "cql")
+         (sql-user "cql")
+         (sql-password "cql"))
         ("rptn-admin"
          (sql-product 'mysql)
          (sql-server "localhost")
