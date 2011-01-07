@@ -267,21 +267,21 @@ So you can bind it to both M-r and M-s."
         (mark " " (name 16 -1) " " filename)))
 
 ;;; RCIRC
-(eval-after-load 'rcirc
-  '(progn
-     (require 'rcirc-color)
-     (require 'rcirc-late-fix)
-     (require 'rcirc-notify)
-     (if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
-     (setq rcirc-default-nick "r0man"
-           rcirc-default-user-name "r0man"
-           rcirc-default-full-name user-full-name
-           rcirc-private-chat t)
-     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql"))))
-     (add-hook 'rcirc-mode-hook (lambda ()
-                                  (set (make-local-variable 'scroll-conservatively) 8192)
-                                  (rcirc-track-minor-mode 1)
-                                  (flyspell-mode 1)))))
+(require 'rcirc-color)
+(require 'rcirc-late-fix)
+(require 'rcirc-notify)
+(if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
+(setq rcirc-default-nick "r0man"
+      rcirc-default-user-name "r0man"
+      rcirc-default-full-name "Roman Scherer"
+      rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql")))
+      rcirc-private-chat t
+      rcirc-debug-flag t)
+(add-hook 'rcirc-mode-hook
+          (lambda ()
+            (set (make-local-variable 'scroll-conservatively) 8192)
+            (rcirc-track-minor-mode 1)
+            (flyspell-mode 1)))
 
 ;;; SASS
 (add-to-list 'auto-mode-alist '("\\.scss$" . sass-mode))
