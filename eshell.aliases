@@ -1,3 +1,4 @@
-alias clear recenter 0
-alias la ls -la $*
+alias ant  $*
 alias ll ls -l $*
+alias la ls -la $*
+alias clear recenter 0
