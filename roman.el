@@ -155,6 +155,8 @@ So you can bind it to both M-r and M-s."
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
 
+(setq next-line-add-newlines t)
+
 ;; Use my custom color theme.
 (require 'color-theme)
 (load-file "~/.emacs.d/color-theme-roman.el")
