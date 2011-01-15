@@ -55,8 +55,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; AMAZON WEB SERVICES
-(setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
-(setenv "EC2_CERT" (expand-file-name "~/.ec2/cert-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
+(setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-HIEDBLD63HFEMLW6E632UMYOLYK36OYV.pem"))
+(setenv "EC2_CERT" (expand-file-name "~/.ec2/cert-HIEDBLD63HFEMLW6E632UMYOLYK36OYV.pem"))
 (let ((aws-credentials (expand-file-name "~/.aws.el")))
   (if (file-exists-p aws-credentials)
       (progn
