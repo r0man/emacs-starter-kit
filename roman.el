@@ -277,7 +277,7 @@ So you can bind it to both M-r and M-s."
 (setq rcirc-default-nick "r0man"
       rcirc-default-user-name "r0man"
       rcirc-default-full-name "Roman Scherer"
-      rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql")))
+      rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql" "#pallet")))
       rcirc-private-chat t
       rcirc-debug-flag t)
 (add-hook 'rcirc-mode-hook
