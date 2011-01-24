@@ -55,8 +55,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; AMAZON WEB SERVICES
-(setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
-(setenv "EC2_CERT" (expand-file-name "~/.ec2/cert-OGEEQVMWWYHTKM64B42KVAGVP77J5NRB.pem"))
+(setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-HIEDBLD63HFEMLW6E632UMYOLYK36OYV.pem"))
+(setenv "EC2_CERT" (expand-file-name "~/.ec2/cert-HIEDBLD63HFEMLW6E632UMYOLYK36OYV.pem"))
 (let ((aws-credentials (expand-file-name "~/.aws.el")))
   (if (file-exists-p aws-credentials)
       (progn
@@ -155,6 +155,9 @@ So you can bind it to both M-r and M-s."
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
 
+;; Insert newlines to avoid `end of buffer' errors.
+(setq next-line-add-newlines t)
+
 ;; Use my custom color theme.
 (require 'color-theme)
 (load-file "~/.emacs.d/color-theme-roman.el")
@@ -191,6 +194,7 @@ So you can bind it to both M-r and M-s."
 (defun define-clojure-indent-words ()
   (define-clojure-indent (are 1))
   (define-clojure-indent (dbtest 1))
+  (define-clojure-indent (controller-test 1))
   (define-clojure-indent (database-test 1))
   (define-clojure-indent (datastore-test 1))
   (define-clojure-indent (emits-once 1))
@@ -199,8 +203,7 @@ So you can bind it to both M-r and M-s."
   (define-clojure-indent (memcache-test 1))
   (define-clojure-indent (task-queue-test 1))
   (define-clojure-indent (uncountable 1))
-  (define-clojure-indent (user-test 1))
-  )
+  (define-clojure-indent (user-test 1)))
 
 (add-hook 'clojure-mode-hook 'define-clojure-indent-words)
 
@@ -267,21 +270,21 @@ So you can bind it to both M-r and M-s."
         (mark " " (name 16 -1) " " filename)))
 
 ;;; RCIRC
-(eval-after-load 'rcirc
-  '(progn
-     (require 'rcirc-color)
-     (require 'rcirc-late-fix)
-     (require 'rcirc-notify)
-     (if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
-     (setq rcirc-default-nick "r0man"
-           rcirc-default-user-name "r0man"
-           rcirc-default-full-name user-full-name
-           rcirc-private-chat t)
-     (setq rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql"))))
-     (add-hook 'rcirc-mode-hook (lambda ()
-                                  (set (make-local-variable 'scroll-conservatively) 8192)
-                                  (rcirc-track-minor-mode 1)
-                                  (flyspell-mode 1)))))
+(require 'rcirc-color)
+(require 'rcirc-late-fix)
+(require 'rcirc-notify)
+(if (file-exists-p "~/.rcirc.el") (load-file "~/.rcirc.el"))
+(setq rcirc-default-nick "r0man"
+      rcirc-default-user-name "r0man"
+      rcirc-default-full-name "Roman Scherer"
+      rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql")))
+      rcirc-private-chat t
+      rcirc-debug-flag t)
+(add-hook 'rcirc-mode-hook
+          (lambda ()
+            (set (make-local-variable 'scroll-conservatively) 8192)
+            (rcirc-track-minor-mode 1)
+            (flyspell-mode 1)))
 
 ;;; SASS
 (add-to-list 'auto-mode-alist '("\\.scss$" . sass-mode))
@@ -340,7 +343,23 @@ So you can bind it to both M-r and M-s."
 
 ;; SQL-MODE
 (setq sql-connection-alist
-      '(("rptn-admin-development"
+      '(("burningswell-development"
+         (sql-product 'postgres)
+         (sql-database "burningswell_development"))
+        ("burningswell-test"
+         (sql-product 'postgres)
+         (sql-database "burningswell_test"))
+        ("cql-mysql"
+         (sql-product 'postgres)
+         (sql-database "cql")
+         (sql-user "cql")
+         (sql-password "cql"))
+        ("cql-postgresql"
+         (sql-product 'postgres)
+         (sql-database "cql")
+         (sql-user "cql")
+         (sql-password "cql"))
+        ("rptn-admin"
          (sql-product 'mysql)
          (sql-server "localhost")
          (sql-database "ptnadmin_development")
