@@ -287,7 +287,7 @@ So you can bind it to both M-r and M-s."
 (setq rcirc-default-nick "r0man"
       rcirc-default-user-name "r0man"
       rcirc-default-full-name "Roman Scherer"
-      rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql")))
+      rcirc-server-alist '(("irc.freenode.net" :channels ("#clojure" "#clojureql" "#pallet")))
       rcirc-private-chat t
       rcirc-debug-flag t)
 (add-hook 'rcirc-mode-hook
@@ -346,8 +346,10 @@ So you can bind it to both M-r and M-s."
 
 ;;; RUBY-TEST MODE
 (require 'ruby-test-mode)
-(setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.1-p376/bin/ruby")
-      ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.1-p376/bin/spec"))
+;; (setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.1-p376/bin/ruby")
+;;       ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.1-p376/bin/spec"))
+(setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.2-p136/bin/ruby")
+      ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.2-p136/bin/rspec"))
 
 ;; SQL-MODE
 (setq sql-connection-alist
@@ -370,34 +372,56 @@ So you can bind it to both M-r and M-s."
         ("rptn-admin"
          (sql-product 'mysql)
          (sql-server "localhost")
-         (sql-user "ptn_admin")
-         (sql-database "ptn_development"))
+         (sql-database "ptnadmin_development")
+         (sql-user "nugg"))
         ("rptn-admin-test"
          (sql-product 'mysql)
          (sql-server "localhost")
-         (sql-user "ptn")
-         (sql-database "ptnadmin_test"))))
+         (sql-database "ptnadmin_test")
+         (sql-user "nugg"))
+        ("rptn-admin-staging"
+         (sql-product 'mysql)
+         (sql-server "qa-rptnadmin001.ffm.nugg.ad")
+         (sql-database "ptn_staging_admin")
+         (sql-user "admin"))
+        ("analytic-development"
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-user "nugg")
+         (sql-database "analytic_development"))
+        ("analytic-test"
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-user "nugg")
+         (sql-database "analytic_test"))
+        ("analytic-staging"
+         (sql-product 'mysql)
+         (sql-server "qa-mila-superstar.ffm.nugg.ad")
+         (sql-user "analytic")
+         (sql-database "analytic_staging"))))
 
 ;; ;;; EMACS RAILS RELOADED
-;; (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
-;; (setq rails/bundles/disabled-list '(apidoc generator webserver))
-;; (require 'rails-autoload)
+(setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
+;; (setq rails/bundles/disabled-list '(apidoc generator webserver rspec))
+;; (setq rails/bundles/disabled-list '(apidoc))
+(setq rails/webserver-bundle/default-type "webrick")
+(require 'rails-autoload)
 
-;; (defun switch-to-rails-runner-buffer ()
-;;   (switch-to-buffer-other-window rails/runner/buffer-name)
-;;   (other-window -1))
+(defun switch-to-rails-runner-buffer ()
+  (switch-to-buffer-other-window rails/runner/buffer-name)
+  (other-window -1))
 
-;; (defadvice rails/compile/current-method (after rails/compile/current-method-advice) ()
-;;   "Switch to the rails runner buffer after running the method test."
-;;   (switch-to-rails-runner-buffer))
+(defadvice rails/compile/current-method (after rails/compile/current-method-advice) ()
+  "Switch to the rails runner buffer after running the method test."
+  (switch-to-rails-runner-buffer))
 
-;; (ad-activate 'rails/compile/current-method)
+(ad-activate 'rails/compile/current-method)
 
-;; (defadvice rails/compile/single-file (after rails/compile/single-file-advice) ()
-;;   "Switch to the rails runner buffer after running the file test."
-;;   (switch-to-rails-runner-buffer))
+(defadvice rails/compile/single-file (after rails/compile/single-file-advice) ()
+  "Switch to the rails runner buffer after running the file test."
+  (switch-to-rails-runner-buffer))
 
-;; (ad-activate 'rails/compile/single-file)
+(ad-activate 'rails/compile/single-file)
 
 ;;; WHITESPACE-MODE
 ;; (global-whitespace-mode)
