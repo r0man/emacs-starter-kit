@@ -55,14 +55,24 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; AMAZON WEB SERVICES
+
+;; Basanostra
 (setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-HIEDBLD63HFEMLW6E632UMYOLYK36OYV.pem"))
 (setenv "EC2_CERT" (expand-file-name "~/.ec2/cert-HIEDBLD63HFEMLW6E632UMYOLYK36OYV.pem"))
+
+;; Roman
+(setenv "EC2_PRIVATE_KEY" (expand-file-name "~/.ec2/pk-5KRS2HTFUGCWQHW7CVCH3FXOR33I3ZRI.pem"))
+(setenv "EC2_CERT" (expand-file-name "~/.ec2/cert-5KRS2HTFUGCWQHW7CVCH3FXOR33I3ZRI.pem"))
+
 (let ((aws-credentials (expand-file-name "~/.aws.el")))
   (if (file-exists-p aws-credentials)
       (progn
         (load-file aws-credentials)
+        (setenv "AWS_ACCOUNT_NUMBER" aws-account-number)
         (setenv "AWS_ACCESS_KEY_ID" aws-access-key-id)
-        (setenv "AWS_SECRET_ACCESS_KEY" aws-secret-access-key))))
+        (setenv "AWS_SECRET_ACCESS_KEY" aws-secret-access-key)
+        (setenv "S3_ACCESS_KEY" aws-access-key-id)
+        (setenv "S3_SECRET_KEY" aws-secret-access-key))))
 
 (defun chomp (str)
   "Chomp leading and tailing whitespace from STR."
