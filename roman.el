@@ -165,9 +165,6 @@ So you can bind it to both M-r and M-s."
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
 
-;; Insert newlines to avoid `end of buffer' errors.
-(setq next-line-add-newlines t)
-
 ;; Use my custom color theme.
 (require 'color-theme)
 (load-file "~/.emacs.d/color-theme-roman.el")
@@ -369,36 +366,36 @@ So you can bind it to both M-r and M-s."
          (sql-database "cql")
          (sql-user "cql")
          (sql-password "cql"))
-        ("rptn-admin"
+        ("rptn-admin-development"
          (sql-product 'mysql)
          (sql-server "localhost")
          (sql-database "ptnadmin_development")
-         (sql-user "nugg"))
-        ("rptn-admin-test"
-         (sql-product 'mysql)
-         (sql-server "localhost")
-         (sql-database "ptnadmin_test")
          (sql-user "nugg"))
         ("rptn-admin-staging"
          (sql-product 'mysql)
          (sql-server "qa-rptnadmin001.ffm.nugg.ad")
          (sql-database "ptn_staging_admin")
          (sql-user "admin"))
+        ("rptn-admin-test"
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-database "ptnadmin_test")
+         (sql-user "nugg"))
         ("analytic-development"
          (sql-product 'mysql)
          (sql-server "localhost")
          (sql-user "nugg")
          (sql-database "analytic_development"))
-        ("analytic-test"
-         (sql-product 'mysql)
-         (sql-server "localhost")
-         (sql-user "nugg")
-         (sql-database "analytic_test"))
         ("analytic-staging"
          (sql-product 'mysql)
          (sql-server "qa-mila-superstar.ffm.nugg.ad")
          (sql-user "analytic")
-         (sql-database "analytic_staging"))))
+         (sql-database "analytic_staging"))
+        ("analytic-test"
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-user "nugg")
+         (sql-database "analytic_test"))))
 
 ;; ;;; EMACS RAILS RELOADED
 (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
@@ -422,11 +419,6 @@ So you can bind it to both M-r and M-s."
   (switch-to-rails-runner-buffer))
 
 (ad-activate 'rails/compile/single-file)
-
-;;; WHITESPACE-MODE
-;; (global-whitespace-mode)
-;; (setq whitespace-style
-;;       '(spaces tabs))
 
 ;;; KEY BINDINGS
 
