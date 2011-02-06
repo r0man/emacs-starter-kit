@@ -199,11 +199,13 @@ So you can bind it to both M-r and M-s."
 
 ;; CLOJURE-MODE
 (defun define-clojure-indent-words ()
+  (define-clojure-indent (api-test 1))
   (define-clojure-indent (are 1))
-  (define-clojure-indent (dbtest 1))
   (define-clojure-indent (controller-test 1))
+  (define-clojure-indent (context 1))
   (define-clojure-indent (database-test 1))
   (define-clojure-indent (datastore-test 1))
+  (define-clojure-indent (dbtest 1))
   (define-clojure-indent (emits-once 1))
   (define-clojure-indent (ensure-open 1))
   (define-clojure-indent (expect 1))
