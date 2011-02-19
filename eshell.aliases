@@ -1,6 +1,5 @@
-alias ai sudo aptitude install $*
-alias ll ls -l $*
-alias la ls -la $*
-alias clear recenter 0
-alias ff find-file $1
 alias d dired $1
+alias ff find-file $1
+alias clear recenter 0
+alias la ls -lha $*
+alias ll ls -lh $*
