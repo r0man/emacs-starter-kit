@@ -219,6 +219,9 @@ So you can bind it to both M-r and M-s."
 ;; CLOSURE-LINT-MODE
 (require 'closure-lint-mode)
 
+;; ELEIN
+(require 'elein)
+
 ;;; GIST
 (setq gist-view-gist t)
 
