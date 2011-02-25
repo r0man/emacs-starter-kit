@@ -195,6 +195,8 @@ So you can bind it to both M-r and M-s."
 ;; CLOJURE-MODE
 (defun define-clojure-indent-words ()
   (define-clojure-indent (api-test 1))
+  (define-clojure-indent (admin-db-test 1))
+  (define-clojure-indent (analytic-db-test 1))
   (define-clojure-indent (are 1))
   (define-clojure-indent (controller-test 1))
   (define-clojure-indent (context 1))
@@ -210,6 +212,16 @@ So you can bind it to both M-r and M-s."
   (define-clojure-indent (user-test 1)))
 
 (add-hook 'clojure-mode-hook 'define-clojure-indent-words)
+
+(progn
+  (defun nuggad-test-maybe-enable ()
+    "Enable clojure-test-mode if the current buffer contains nuggad.test."
+    (save-excursion
+      (save-window-excursion
+        (goto-char (point-min))
+        (when (search-forward "nuggad.test" nil t)
+          (clojure-test-mode t)))))
+  (add-hook 'clojure-mode-hook 'nuggad-test-maybe-enable))
 
 ;; CLOSURE-LINT-MODE
 (require 'closure-lint-mode)
@@ -349,53 +361,7 @@ So you can bind it to both M-r and M-s."
       ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.2-p136/bin/rspec"))
 
 ;; SQL-MODE
-(setq sql-connection-alist
-      '(("burningswell-development"
-         (sql-product 'postgres)
-         (sql-database "burningswell_development"))
-        ("burningswell-test"
-         (sql-product 'postgres)
-         (sql-database "burningswell_test"))
-        ("cql-mysql"
-         (sql-product 'postgres)
-         (sql-database "cql")
-         (sql-user "cql")
-         (sql-password "cql"))
-        ("cql-postgresql"
-         (sql-product 'postgres)
-         (sql-database "cql")
-         (sql-user "cql")
-         (sql-password "cql"))
-        ("rptn-admin-development"
-         (sql-product 'mysql)
-         (sql-server "localhost")
-         (sql-database "ptnadmin_development")
-         (sql-user "nugg"))
-        ("rptn-admin-staging"
-         (sql-product 'mysql)
-         (sql-server "qa-rptnadmin001.ffm.nugg.ad")
-         (sql-database "ptn_staging_admin")
-         (sql-user "admin"))
-        ("rptn-admin-test"
-         (sql-product 'mysql)
-         (sql-server "localhost")
-         (sql-database "ptnadmin_test")
-         (sql-user "nugg"))
-        ("analytic-development"
-         (sql-product 'mysql)
-         (sql-server "localhost")
-         (sql-user "nugg")
-         (sql-database "analytic_development"))
-        ("analytic-staging"
-         (sql-product 'mysql)
-         (sql-server "qa-mila-superstar.ffm.nugg.ad")
-         (sql-user "analytic")
-         (sql-database "analytic_staging"))
-        ("analytic-test"
-         (sql-product 'mysql)
-         (sql-server "localhost")
-         (sql-user "nugg")
-         (sql-database "analytic_test"))))
+(let ((filename "~/.sql.el")) (if (file-exists-p filename) (load-file filename)))
 
 ;; ;;; EMACS RAILS RELOADED
 (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
