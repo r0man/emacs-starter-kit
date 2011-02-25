@@ -23,20 +23,9 @@
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
-;; ANDROID
-(setenv "ANDROID_HOME" (expand-file-name "~/local/android-sdk-linux_86"))
-(add-to-list 'load-path (concat (getenv "ANDROID_HOME") "/tools/lib"))
-;; (require 'android)
-;; (require 'android-mode)
-(setq android-mode-sdk-dir (getenv "ANDROID_HOME")
-      android-mode-avd "samsung")
-
 (setq
  exec-path
  (list
-  (expand-file-name "~/local/appengine-java-sdk-1.3.5/bin")
-  (expand-file-name "~/local/google_appengine")
-  (concat (getenv "ANDROID_HOME") "/tools")
   (expand-file-name "~/bin")
   (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
   "/usr/local/sbin"
