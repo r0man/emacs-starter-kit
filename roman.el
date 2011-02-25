@@ -198,7 +198,8 @@ So you can bind it to both M-r and M-s."
 
 ;;; GIT
 (require 'magit)
-(let ((filename "/usr/share/doc/git/contrib/emacs/git-blame.el"))
+(dolist (filename '("/usr/share/doc/git/contrib/emacs/git-blame.el"
+                    "/usr/share/emacs/site-lisp/git/git-blame.el"))
   (if (file-exists-p filename) (load-file filename)))
 
 ;;; HIPPIE EXPAND
@@ -208,8 +209,7 @@ So you can bind it to both M-r and M-s."
         try-expand-dabbrev-all-buffers
         try-expand-dabbrev-from-kill
         try-complete-file-name-partially
-        try-complete-file-name
-        ))
+        try-complete-file-name))
 
 ;;; IBUFFER-GIT
 (add-to-list 'load-path "~/.emacs.d/ibuffer-git")
