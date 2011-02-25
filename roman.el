@@ -68,42 +68,6 @@
   (let ((s (if (symbolp str) (symbol-name str) str)))
     (replace-regexp-in-string "\\(^[[:space:]\\n]*\\|[[:space:]\\n]*$\\)" "" s)))
 
-(defun duplicate-current-line-or-region (arg)
-  "Duplicates the current line or region ARG times.
-If there's no region, the current line will be duplicated. However, if
-there's a region, all lines that region covers will be duplicated."
-  (interactive "p")
-  (let (beg end (origin (point)))
-    (if (and mark-active (> (point) (mark)))
-        (exchange-point-and-mark))
-    (setq beg (line-beginning-position))
-    (if mark-active
-        (exchange-point-and-mark))
-    (setq end (line-end-position))
-    (let ((region (buffer-substring-no-properties beg end)))
-      (dotimes (i arg)
-        (goto-char end)
-        (newline)
-        (insert region)
-        (setq end (point)))
-      (goto-char (+ origin (* (length region) arg) arg)))))
-
-(require 'slime)
-(defun lein-swank ()
-  (interactive)
-  (let ((root (locate-dominating-file default-directory "project.clj")))
-    (when (not root)
-      (error "Not in a Leiningen project."))
-    ;; you can customize slime-port using .dir-locals.el
-    (shell-command (format "cd %s && lein swank %s &" root slime-port)
-                   "*lein-swank*")
-    (set-process-filter (get-buffer-process "*lein-swank*")
-                        (lambda (process output)
-                          (when (string-match "Connection opened on" output)
-                            (slime-connect "localhost" slime-port)
-                            (set-process-filter process nil))))
-    (message "Starting swank server...")))
-
 (defun fullscreen (&optional f)
   (interactive)
   (set-frame-parameter
@@ -172,6 +136,7 @@ So you can bind it to both M-r and M-s."
 (ac-config-default)
 
 ;; AC-SLIME
+(require 'slime)
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 
@@ -385,7 +350,6 @@ So you can bind it to both M-r and M-s."
 
 ;; Cycle through or spawn new shell buffers.
 (global-set-key (kbd "C-c C-s") 'swap-windows)
-(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 (global-set-key (kbd "C-x C-g b") 'mo-git-blame-current)
 (global-set-key (kbd "C-x C-g s") 'magit-status)
 (global-set-key (kbd "C-x I") 'indent-buffer)
