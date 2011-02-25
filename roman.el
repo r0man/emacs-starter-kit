@@ -251,13 +251,6 @@ So you can bind it to both M-r and M-s."
 
 ;;; TRAMP
 (require 'tramp)
-;; (setq tramp-debug-buffer nil tramp-default-method "ssh")
-;; (add-to-list 'tramp-default-method-alist
-;;              '("ichi" "rptn_deploy" "ssh"))
-;; (add-to-list 'tramp-default-user-alist
-;;              '("ssh" "ichi" "rptn_deploy"))
-
-
 (tramp-set-completion-function
  "ssh"
  '((tramp-parse-shosts "~/.ssh/known_hosts")
@@ -278,8 +271,6 @@ So you can bind it to both M-r and M-s."
 
 ;;; RUBY-TEST MODE
 (require 'ruby-test-mode)
-;; (setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.1-p376/bin/ruby")
-;;       ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.1-p376/bin/spec"))
 (setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.2-p136/bin/ruby")
       ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.2-p136/bin/rspec"))
 
@@ -288,8 +279,6 @@ So you can bind it to both M-r and M-s."
 
 ;; ;;; EMACS RAILS RELOADED
 (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
-;; (setq rails/bundles/disabled-list '(apidoc generator webserver rspec))
-;; (setq rails/bundles/disabled-list '(apidoc))
 (setq rails/webserver-bundle/default-type "webrick")
 (require 'rails-autoload)
 
