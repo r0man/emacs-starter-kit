@@ -68,12 +68,6 @@
   (let ((s (if (symbolp str) (symbol-name str) str)))
     (replace-regexp-in-string "\\(^[[:space:]\\n]*\\|[[:space:]\\n]*$\\)" "" s)))
 
-(defun fullscreen (&optional f)
-  (interactive)
-  (set-frame-parameter
-   f 'fullscreen
-   (if (frame-parameter f 'fullscreen) nil 'fullboth)))
-
 (defun swap-windows ()
   "If you have 2 windows, it swaps them."
   (interactive)
