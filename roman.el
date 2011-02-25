@@ -166,6 +166,9 @@ So you can bind it to both M-r and M-s."
 ;; CLOSURE-LINT-MODE
 (require 'closure-lint-mode)
 
+;; DURENDAL - https://github.com/technomancy/durendal
+(require 'durendal)
+
 ;; ELEIN
 (require 'elein)
 
