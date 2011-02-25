@@ -129,9 +129,6 @@ So you can bind it to both M-r and M-s."
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 
-;; CEDET
-(require 'cedet)
-
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
 
