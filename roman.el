@@ -312,7 +312,7 @@ So you can bind it to both M-r and M-s."
 (global-set-key (kbd "C-x C-o") 'delete-blank-lines)
 (global-unset-key (kbd "C-x g"))
 
-;; Cycle through or spawn new shell buffers.
+(global-set-key (kbd "C-c C-n") 'durendal-sort-ns)
 (global-set-key (kbd "C-c C-s") 'swap-windows)
 (global-set-key (kbd "C-x C-g b") 'mo-git-blame-current)
 (global-set-key (kbd "C-x C-g s") 'magit-status)
