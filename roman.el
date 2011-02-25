@@ -202,6 +202,9 @@ So you can bind it to both M-r and M-s."
                     "/usr/share/emacs/site-lisp/git/git-blame.el"))
   (if (file-exists-p filename) (load-file filename)))
 
+;; HASKELL-MODE
+(require 'haskell-mode)
+
 ;;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
       '(try-expand-all-abbrevs
