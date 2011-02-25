@@ -63,11 +63,6 @@
         (setenv "S3_ACCESS_KEY" aws-access-key-id)
         (setenv "S3_SECRET_KEY" aws-secret-access-key))))
 
-(defun chomp (str)
-  "Chomp leading and tailing whitespace from STR."
-  (let ((s (if (symbolp str) (symbol-name str) str)))
-    (replace-regexp-in-string "\\(^[[:space:]\\n]*\\|[[:space:]\\n]*$\\)" "" s)))
-
 (defun swap-windows ()
   "If you have 2 windows, it swaps them."
   (interactive)
