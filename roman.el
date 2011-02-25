@@ -115,11 +115,6 @@ there's a region, all lines that region covers will be duplicated."
                             (set-process-filter process nil))))
     (message "Starting swank server...")))
 
-(defun google (query)
-  "Search for QUERY on Google."
-  (interactive "sGoogle: ")
-  (browse-url (concat "http://www.google.com/search?q=" query)))
-
 (defun fullscreen (&optional f)
   (interactive)
   (set-frame-parameter
