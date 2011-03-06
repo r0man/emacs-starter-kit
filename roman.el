@@ -27,6 +27,7 @@
  exec-path
  (list
   (expand-file-name "~/bin")
+  (expand-file-name "~/local/hadoop/bin")
   (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
   "/usr/local/sbin"
   "/usr/local/bin"
