@@ -169,7 +169,6 @@ So you can bind it to both M-r and M-s."
 
 ;; DURENDAL - https://github.com/technomancy/durendal
 (require 'durendal)
-(durendal-enable)
 
 ;; ELEIN
 (require 'elein)
