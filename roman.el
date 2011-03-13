@@ -23,12 +23,15 @@
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
 
+;; Hadoop Home
+(setenv "HADOOP_HOME" (expand-file-name "/home/hadoop/hadoop"))
+
 (setq
  exec-path
  (list
   (expand-file-name "~/bin")
-  (expand-file-name "~/local/hadoop/bin")
-  (expand-file-name "~/local/hadoop/src/contrib/ec2/bin")
+  (concat (getenv "HADOOP_HOME") "/bin")
+  (concat (getenv "HADOOP_HOME") "/src/contrib/ec2/bin")
   "/usr/local/sbin"
   "/usr/local/bin"
   "/usr/sbin"
