@@ -31,7 +31,7 @@
  (list
   (expand-file-name "~/bin")
   (concat (getenv "HADOOP_HOME") "/bin")
-  (concat (getenv "HADOOP_HOME") "/src/contrib/ec2/bin")
+  (concat (getenv "HADOOP_HOME") "/src/contrib/cloud/src/py")
   "/usr/local/sbin"
   "/usr/local/bin"
   "/usr/sbin"
