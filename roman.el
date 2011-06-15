@@ -84,24 +84,6 @@
            (set-window-start w2 s1))))
   (other-window 1))
 
-;; Use IDO fro comint history
-;; See: http://paste.lisp.org/display/37129 (modified to remove duplicate)
-(defun ido-complete-comint-input-ring ()
-  "Fetch a previous element from history using ido-like completion.
-This function searches *all* elements in history, not just
-previous or next elements like Comint's normal completion.
-So you can bind it to both M-r and M-s."
-  (interactive)
-  (unless (null comint-input-ring)
-    (let* ((elt (ido-completing-read "History: " (delete "" (remove-duplicates (cddr (ring-elements comint-input-ring)) :test #'string=)) nil t))
-           (pos (comint-previous-matching-input-string-position
-                 (regexp-quote elt) 1)))
-      (unless (null pos)
-        (setq comint-input-ring-index pos)
-        (message "History item: %d" (1+ pos))
-        (comint-delete-input)
-        (insert (ring-ref comint-input-ring pos))))))
-
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
 
