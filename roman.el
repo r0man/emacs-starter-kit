@@ -187,8 +187,8 @@
 
 ;;; GIT
 (require 'magit)
-(dolist (filename '("/usr/share/doc/git/contrib/emacs/git-blame.el"
-                    "/usr/share/emacs/site-lisp/git/git-blame.el"))
+(dolist (filename '("/usr/share/emacs/site-lisp/git-blame.el"
+                    "/usr/share/git/emacs/git-blame.el"))
   (if (file-exists-p filename) (load-file filename)))
 
 ;; HASKELL-MODE
