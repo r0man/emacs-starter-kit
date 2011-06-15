@@ -13,7 +13,6 @@
        'css-mode
        'gist
        'haml-mode
-       'idle-highlight
        'inf-ruby
        'json
        'ruby-mode
