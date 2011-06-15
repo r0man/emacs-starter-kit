@@ -158,9 +158,6 @@
 ;; DURENDAL - https://github.com/technomancy/durendal
 (require 'durendal)
 
-;; ELEIN
-(require 'elein)
-
 ;;; GIST
 (setq gist-view-gist t)
 
