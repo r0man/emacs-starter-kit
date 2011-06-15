@@ -1,6 +1,8 @@
 
-;; Use the Marmalade repository as well.
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; Set package archives.
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;;; Custom elpa packages.
 (setq starter-kit-packages
