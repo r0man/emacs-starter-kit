@@ -1,4 +1,7 @@
 
+;; Use the Marmalade repository as well.
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+
 ;;; Custom elpa packages.
 (setq starter-kit-packages
       (list
