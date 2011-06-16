@@ -21,7 +21,8 @@
        'sass-mode
        'slime-repl
        'smart-tab
-       'yaml-mode))
+       'yaml-mode
+       'yasnippet))
 
 ;; Install the custom ELPA packages, if not already installed.
 (starter-kit-elpa-install)
@@ -215,7 +216,8 @@
 
 ;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
-      '(try-expand-all-abbrevs
+      '(yas/hippie-try-expand
+        try-expand-all-abbrevs
         try-expand-dabbrev
         try-expand-dabbrev-all-buffers
         try-expand-dabbrev-from-kill
@@ -308,6 +310,10 @@
   (switch-to-rails-runner-buffer))
 
 (ad-activate 'rails/compile/single-file)
+
+;; YASNIPPET
+(require 'dropdown-list)
+(setq yas/prompt-functions '(yas/dropdown-prompt yas/ido-prompt yas/completing-prompt))
 
 ;; KEY BINDINGS
 
