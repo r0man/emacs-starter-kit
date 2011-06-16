@@ -16,6 +16,7 @@
        'idle-highlight
        'inf-ruby
        'json
+       'js2-mode
        'ruby-mode
        'ruby-test-mode
        'sass-mode
@@ -113,6 +114,12 @@
 (require 'slime)
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
+
+;; COFFEE MODE
+(let ((coffee-mode-directory "~/.emacs.d/coffee-mode"))
+  (when (file-directory-p coffee-mode-directory)
+    (add-to-list 'load-path coffee-mode-directory)
+    (require 'coffee-mode)))
 
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
