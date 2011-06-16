@@ -115,7 +115,11 @@
 (let ((coffee-mode-directory "~/.emacs.d/coffee-mode"))
   (when (file-directory-p coffee-mode-directory)
     (add-to-list 'load-path coffee-mode-directory)
-    (require 'coffee-mode)))
+    (require 'coffee-mode)
+    (defun coffee-mode-customization ()
+      (define-key coffee-mode-map "\C-c\C-k" 'coffee-compile-buffer)
+      (define-key coffee-mode-map "\C-c\C-r" 'coffee-compile-region))
+    (add-hook 'coffee-mode-hook '(lambda () (coffee-mode-customization)))))
 
 ;;; COMPILE-MODE
 (setq compilation-scroll-output 't)
