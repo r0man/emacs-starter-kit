@@ -117,6 +117,8 @@
     (add-to-list 'load-path coffee-mode-directory)
     (require 'coffee-mode)
     (defun coffee-mode-customization ()
+      (setq coffee-tab-width 2
+            tab-width 2)
       (define-key coffee-mode-map "\C-c\C-k" 'coffee-compile-buffer)
       (define-key coffee-mode-map "\C-c\C-r" 'coffee-compile-region))
     (add-hook 'coffee-mode-hook '(lambda () (coffee-mode-customization)))))
