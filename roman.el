@@ -81,7 +81,7 @@
            (set-window-start w2 s1))))
   (other-window 1))
 
-;; Show the menu-bar, but not the scroll-bar.
+;; Show the menu-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
 
 ;; Use custom color theme.
