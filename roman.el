@@ -22,7 +22,7 @@
        'slime-repl
        'smart-tab
        'yaml-mode
-       'yasnippet))
+       'yasnippet-bundle))
 
 ;; Install the custom ELPA packages, if not already installed.
 (starter-kit-elpa-install)
