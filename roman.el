@@ -13,19 +13,15 @@
        'css-mode
        'gist
        'haml-mode
-       'idle-highlight
        'inf-ruby
        'json
        'js2-mode
        'ruby-mode
        'ruby-test-mode
        'sass-mode
-       'slime
-       'slime-repl
        'smart-tab
-       'yaml-mode
-       'yasnippet-bundle
-       ))
+       'slime-repl
+       'yaml-mode))
 
 ;;; Install the custom elpa packages, if not already installed.
 (starter-kit-elpa-install)
