@@ -1,10 +1,10 @@
 
-;; Set package archives.
+;; Set ELPA package archives.
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("marmalade" . "http://marmalade-repo.org/packages/")))
 
-;;; Custom elpa packages.
+;; Custom ELPA packages.
 (setq starter-kit-packages
       (list
        'clojure-mode
@@ -14,16 +14,16 @@
        'gist
        'haml-mode
        'inf-ruby
-       'json
        'js2-mode
+       'json
        'ruby-mode
        'ruby-test-mode
        'sass-mode
-       'smart-tab
        'slime-repl
+       'smart-tab
        'yaml-mode))
 
-;;; Install the custom elpa packages, if not already installed.
+;; Install the custom ELPA packages, if not already installed.
 (starter-kit-elpa-install)
 
 ;; Hadoop Home
@@ -43,11 +43,11 @@
   "/bin"
   "/usr/games"))
 
-;;; Build PATH from exec-path.
+;; Build PATH from exec-path.
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 (setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
 
-;; DELETE TRAILING WHITESPACE
+;; Delete trailing whitespace when saving.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; AMAZON WEB SERVICES
@@ -84,7 +84,7 @@
 ;; Show the menu-bar, but not the scroll-bar.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode t))
 
-;; Use my custom color theme.
+;; Use custom color theme.
 (require 'color-theme)
 (load-file "~/.emacs.d/color-theme-roman.el")
 (color-theme-roman)
@@ -106,10 +106,18 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
-;; AC-SLIME
+;; AUTO-COMPLETE - SLIME
 (require 'slime)
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
+
+;; SLIME-CVS
+(let ((slime-directory "/usr/share/emacs/site-lisp/slime"))
+  (when (file-directory-p slime-directory)
+    (add-to-list 'load-path slime-directory)
+    (add-to-list 'load-path (concat slime-directory "/contrib"))
+    (load-file (concat slime-directory "/slime.el"))
+    (slime-setup '(slime-repl slime-js))))
 
 ;; COFFEE MODE
 (let ((coffee-mode-directory "~/.emacs.d/coffee-mode"))
@@ -164,26 +172,26 @@
 ;; CLOSURE-TEMPLATE-HTML-MODE
 (require 'closure-template-html-mode)
 
-;; DURENDAL - https://github.com/technomancy/durendal
+;; DURENDAL
 (require 'durendal)
 
-;;; GIST
+;; GIST
 (setq gist-view-gist t)
 
 ;; JAVA
 (require 'java-mode-indent-annotations)
 (add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
 
-;;; RVM
+;; RVM
 (require 'rvm)
 (set 'rvm-executable (if (file-exists-p "~/.rvm/bin/rvm") "~/.rvm/bin/rvm" "/usr/local/bin/rvm"))
 (rvm-use-default)
 (setenv "rvm_path" "/usr/local/rvm")
 
-;;; ESHELL
+;; ESHELL
 (require 'eshell-ext)
 
-;;; FLYSPELL MODE.
+;; FLYSPELL MODE.
 (dolist (hook '(LaTeX-mode-hook)) (add-hook hook 'flyspell-mode))
 (setq flyspell-abbrev-p t)
 
@@ -194,8 +202,10 @@
   (message (format "Flymake: %s. Flymake will be switched OFF" warning))
   (flymake-mode 0))
 
-;;; GIT
+;; MAGIT
 (require 'magit)
+
+;; GIT-BLAME-MODE
 (dolist (filename '("/usr/share/emacs/site-lisp/git-blame.el"
                     "/usr/share/git/emacs/git-blame.el"))
   (if (file-exists-p filename) (load-file filename)))
@@ -203,7 +213,7 @@
 ;; HASKELL-MODE
 (require 'haskell-mode)
 
-;;; HIPPIE EXPAND
+;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
       '(try-expand-all-abbrevs
         try-expand-dabbrev
@@ -212,7 +222,7 @@
         try-complete-file-name-partially
         try-complete-file-name))
 
-;;; RCIRC
+;; RCIRC
 (require 'rcirc-color)
 (require 'rcirc-late-fix)
 (require 'rcirc-notify)
@@ -229,10 +239,10 @@
             (rcirc-track-minor-mode 1)
             (flyspell-mode 1)))
 
-;;; SASS
+;; SASS
 (add-to-list 'auto-mode-alist '("\\.scss$" . sass-mode))
 
-;;; SMART-TAB
+;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
 (dolist (hook '(c-mode-hook
                 emacs-lisp-mode-hook
@@ -250,14 +260,14 @@
 ;; SOY-MODE
 (require 'soy-mode)
 
-;;; TRAMP
+;; TRAMP
 (require 'tramp)
 (tramp-set-completion-function
  "ssh"
  '((tramp-parse-shosts "~/.ssh/known_hosts")
    (tramp-parse-hosts "/etc/hosts")))
 
-;;; COMINT MODE
+;; COMINT MODE
 (custom-set-variables
  '(comint-scroll-to-bottom-on-input t)  ; always insert at the bottom
  '(comint-scroll-to-bottom-on-output t) ; always add output at the bottom
@@ -267,10 +277,10 @@
  '(comint-completion-addsuffix t)       ; insert space/slash after file completion
  )
 
-;;; RE-BUILDER (PERL)
+;; RE-BUILDER (PERL)
 (require 're-builder-x)
 
-;;; RUBY-TEST MODE
+;; RUBY-TEST MODE
 (require 'ruby-test-mode)
 (setq ruby-test-ruby-executables '("/usr/local/rvm/rubies/ruby-1.9.2-p136/bin/ruby")
       ruby-test-rspec-executables '("/usr/local/rvm/gems/ruby-1.9.2-p136/bin/rspec"))
@@ -278,7 +288,7 @@
 ;; SQL-MODE
 (let ((filename "~/.sql.el")) (if (file-exists-p filename) (load-file filename)))
 
-;; ;;; EMACS RAILS RELOADED
+;; EMACS RAILS RELOADED
 (setq load-path (cons (expand-file-name "~/.emacs.d/emacs-rails-reloaded") load-path))
 (setq rails/webserver-bundle/default-type "webrick")
 (require 'rails-autoload)
@@ -299,7 +309,7 @@
 
 (ad-activate 'rails/compile/single-file)
 
-;;; KEY BINDINGS
+;; KEY BINDINGS
 
 ;; Restore some default key bindings overridden by emacs starter kit.
 (global-set-key (kbd "C-x h") 'mark-whole-buffer)
@@ -313,7 +323,6 @@
 (global-set-key (kbd "C-x C-g s") 'magit-status)
 (global-set-key (kbd "C-x I") 'indent-buffer)
 (global-set-key (kbd "C-x TAB") 'indent-rigidly)
-(global-set-key [f11] 'fullscreen)
 (global-set-key [f5] 'compile)
 
 ;; Jump into eshell
