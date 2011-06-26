@@ -112,13 +112,11 @@
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 
-;; SLIME-CVS
-(let ((slime-directory "/usr/share/emacs/site-lisp/slime"))
-  (when (file-directory-p slime-directory)
-    (add-to-list 'load-path slime-directory)
-    (add-to-list 'load-path (concat slime-directory "/contrib"))
-    (load-file (concat slime-directory "/slime.el"))
-    (slime-setup '(slime-repl slime-js))))
+;; SLIME
+
+;; Fix problem with unicode characters in source code.
+;; http://stackoverflow.com/questions/3101279/how-do-i-use-unicode-utf-8-characters-in-clojure-regular-expressions
+(custom-set-variables '(slime-net-coding-system (quote utf-8-unix)))
 
 ;; COFFEE MODE
 (let ((coffee-mode-directory "~/.emacs.d/coffee-mode"))
