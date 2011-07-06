@@ -237,6 +237,10 @@
         try-complete-file-name-partially
         try-complete-file-name))
 
+;; PAREDIT
+(require 'paredit)
+(add-hook 'eshell-mode-hook 'disable-paredit-mode)
+
 ;; RCIRC
 (require 'rcirc-color)
 (require 'rcirc-late-fix)
