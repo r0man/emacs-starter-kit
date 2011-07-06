@@ -119,9 +119,7 @@
     (when (not root)
       (error "Hey Cowboy, yOu are nOt in any Leiningen prOject!"))
     ;; you can customize slime-port using .dir-locals.el
-    (shell-command (format "cd %s && lein deps &" root)
-                   "*lein-deps*")
-    (durendal-jack-in)))
+    (shell-command (format "cd %s && lein deps &" root) "*lein-deps*")))
 
 ;; SLIME
 
