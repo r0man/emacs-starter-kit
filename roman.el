@@ -113,6 +113,26 @@
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 
+;; LEININGEN
+(defun lein-deps ()
+  "Run lein deps and update all dependencies of the current
+project."
+  (interactive)
+  (let ((root (locate-dominating-file default-directory "project.clj")))
+    (when (not root)
+      (error "Hey Cowboy, yOu are nOt in any Leiningen prOject!"))
+    ;; you can customize slime-port using .dir-locals.el
+    (shell-command (format "cd %s && lein deps &" root) "*lein-deps*")))
+
+(defun lein-ring-server ()
+  "Run 'lein ring server' in the current project to start a web
+server."
+  (interactive)
+  (let ((root (locate-dominating-file default-directory "project.clj")))
+    (when (not root)
+      (error "Hey Cowboy, yOu are nOt in any Leiningen prOject!"))
+    (shell-command (format "cd %s && lein ring server &" root)) "*ring-server*"))
+
 ;; SLIME
 
 ;; Fix problem with unicode characters in source code.
@@ -136,13 +156,17 @@
 
 ;; CLOJURE-MODE
 (defun define-clojure-indent-words ()
-  (define-clojure-indent (api-test 1))
-  (define-clojure-indent (api-admin-test 1))
+  (define-clojure-indent (DELETE 1))
+  (define-clojure-indent (GET 1))
+  (define-clojure-indent (POST 1))
+  (define-clojure-indent (PUT 1))
   (define-clojure-indent (admin-db-test 1))
   (define-clojure-indent (analytic-db-test 1))
+  (define-clojure-indent (api-admin-test 1))
+  (define-clojure-indent (api-test 1))
   (define-clojure-indent (are 1))
-  (define-clojure-indent (controller-test 1))
   (define-clojure-indent (context 1))
+  (define-clojure-indent (controller-test 1))
   (define-clojure-indent (database-test 1))
   (define-clojure-indent (datastore-test 1))
   (define-clojure-indent (dbtest 1))
