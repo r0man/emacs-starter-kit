@@ -356,15 +356,12 @@ server."
   (delete-backward-char 1)
   (forward-char))
 
-;; ('(emacs-lisp-mode coffee-mode))
-;; (ad-activate 'paredit-open-round)
-
-;; EMMS
-(require 'emms-setup)
-(require 'emms-player-mplayer)
-(emms-standard)
-(emms-default-players)
-(setq emms-source-file-default-directory "~/Music")
+;; ;; EMMS
+;; (require 'emms-setup)
+;; (require 'emms-player-mplayer)
+;; (emms-standard)
+;; (emms-default-players)
+;; (setq emms-source-file-default-directory "~/Music")
 
 ;; YASNIPPET
 (require 'dropdown-list)
