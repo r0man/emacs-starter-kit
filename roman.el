@@ -130,7 +130,7 @@ server."
   (let ((root (locate-dominating-file default-directory "project.clj")))
     (when (not root)
       (error "Hey Cowboy, yOu are nOt in any Leiningen prOject!"))
-    (shell-command (format "cd %s && lein ring server &" root)) "*ring-server*"))
+    (shell-command (format "cd %s && lein ring server &" root)) "*lein-ring-server*"))
 
 ;; SLIME
 
@@ -235,6 +235,12 @@ server."
 
 ;; HASKELL-MODE
 (require 'haskell-mode)
+(require 'inf-haskell)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+(add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 
 ;; HIPPIE EXPAND
 (setq hippie-expand-try-functions-list
