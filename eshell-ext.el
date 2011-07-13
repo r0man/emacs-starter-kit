@@ -10,8 +10,8 @@
                 (or (getenv "HOSTNAME") (getenv "HOST") system-name) ":"
                 (eshell/pwd) (if (= (user-uid) 0) " # " " $ "))))
 
-(eval-after-load 'esh-opt
-  '(set-face-attribute 'eshell-prompt nil :foreground "Black"))
+;; (eval-after-load 'esh-opt
+;;   '(set-face-attribute 'eshell-prompt nil :foreground "Black"))
 
 (defun eshell/emacs (&rest args)
   "Open a file in emacs. Some habits die hard."
