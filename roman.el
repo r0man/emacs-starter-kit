@@ -1,8 +1,7 @@
 
 ;; Set ELPA package archives.
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")))
+(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; Custom ELPA packages.
 (setq starter-kit-packages
@@ -11,6 +10,7 @@
        'clojure-test-mode
        'closure-template-html-mode
        'css-mode
+       'find-file-in-project
        'gist
        'haml-mode
        'inf-ruby
@@ -198,6 +198,9 @@ server."
 ;; DURENDAL
 (require 'durendal)
 
+;; FIND-FILE-IN-PROJECT
+(setq ffip-patterns '("*.coffee" "*.rb" "*.html" "*.el" "*.js" "*.rhtml"))
+
 ;; GIST
 (setq gist-view-gist t)
 
@@ -278,17 +281,21 @@ server."
 
 ;; SMART-TAB
 (setq smart-tab-using-hippie-expand t)
-(dolist (hook '(c-mode-hook
-                emacs-lisp-mode-hook
-                haml-mode-hook
-                html-mode-hook
-                java-mode-hook
-                LaTeX-mode-hook
-                ruby-mode-hook
-                yaml-mode-hook
-                css-mode-hook
-                paredit-mode
-                slime-mode-hook))
+(dolist
+    (hook
+     '(
+       LaTeX-mode-hook
+       c-mode-hook
+       css-mode-hook
+       coffee-mode-hook
+       emacs-lisp-mode-hook
+       haml-mode-hook
+       html-mode-hook
+       java-mode-hook
+       paredit-mode
+       ruby-mode-hook
+       slime-mode-hook
+       yaml-mode-hook))
   (add-hook hook (lambda () (smart-tab-mode t))))
 
 ;; SOY-MODE
@@ -342,6 +349,22 @@ server."
   (switch-to-rails-runner-buffer))
 
 (ad-activate 'rails/compile/single-file)
+
+(defadvice paredit-open-round (after paredit-open-round-js-advice) ()
+  "Delete the whitespace before when using Paredit in Javascript modes."
+  (backward-char)
+  (delete-backward-char 1)
+  (forward-char))
+
+;; ('(emacs-lisp-mode coffee-mode))
+;; (ad-activate 'paredit-open-round)
+
+;; EMMS
+(require 'emms-setup)
+(require 'emms-player-mplayer)
+(emms-standard)
+(emms-default-players)
+(setq emms-source-file-default-directory "~/Music")
 
 ;; YASNIPPET
 (require 'dropdown-list)
