@@ -9,6 +9,7 @@
        'clojure-mode
        'clojure-test-mode
        'closure-template-html-mode
+       'color-theme
        'css-mode
        'find-file-in-project
        'gist
