@@ -28,27 +28,6 @@
 ;; Install the custom ELPA packages, if not already installed.
 (starter-kit-elpa-install)
 
-;; Hadoop Home
-(setenv "HADOOP_HOME" (expand-file-name (concat (getenv "HOME") "/local/hadoop")))
-
-(setq
- exec-path
- (list
-  (expand-file-name "~/bin")
-  (concat (getenv "HADOOP_HOME") "/bin")
-  (concat (getenv "HADOOP_HOME") "/src/contrib/cloud/src/py")
-  "/usr/local/sbin"
-  "/usr/local/bin"
-  "/usr/sbin"
-  "/usr/bin"
-  "/sbin"
-  "/bin"
-  "/usr/games"))
-
-;; Build PATH from exec-path.
-(setenv "PATH" (mapconcat 'identity exec-path ":"))
-(setenv "JAVA_HOME" "/usr/lib/jvm/java-6-openjdk")
-
 ;; Delete trailing whitespace when saving.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -189,6 +168,9 @@ server."
         (when (search-forward "nuggad.test" nil t)
           (clojure-test-mode t)))))
   (add-hook 'clojure-mode-hook 'nuggad-test-maybe-enable))
+
+;; CLOJURE SCRIPT
+(add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
 
 ;; CLOSURE-LINT-MODE
 (require 'closure-lint-mode)
